@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import RegisterForm from './RegisterForm'
 
 
@@ -20,18 +20,18 @@ export default class LandingPage extends Component {
   render() {
 
     return (
-      <div>
-        <div>
+      <Container>
+        <Row>
           <RegisterForm/>
-        </div>
+        </Row>
           
-            <div>
-            <Col col-md-2="true"></Col>
-             <Col col-md-8="true"  style={{fontSize : "50px"}}>Landing Page</Col>
-            <Col col-md-2="true"></Col>
-            </div>
+            <Row>
+            <Col md=""></Col>
+             <Col md="8" id="planner-text">Planner</Col>
+            <Col md="2"></Col>
+            </Row>
             
-        </div>
+        </Container>
     )
 }}
 

@@ -18,13 +18,10 @@ function App() {
             console.log(error)
         })
         return (
-            <Container>
-                <Row>
-                    <Col ></Col>
-                    <Col >
-                        <LandingPage/></Col>
-                    <Col ></Col>
-                </Row>
+            <Container fluid>
+                <LandingPage/>
+                    
+                
             </Container>
         )
 }
