@@ -1,4 +1,9 @@
-:root{
+[class*="col-"]{
+  border: 1px solid red;
+}
+
+
+html body{
   display: grid;
   height: 100%;
   width: 100%;
@@ -8,6 +13,7 @@
   display: flex;
   color:red;
   justify-content: center;
+  text-shadow: auto;
 }
 
 .App {
@@ -47,5 +53,21 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+#register-form{
+  display: flex;
+  flex-direction: column;
+}
+
+@media all and (min-width: 480px) {
+  .Login {
+    padding: 60px 0;
+  }
+
+  .Login form {
+    margin: 0 auto;
+    max-width: 320px;
   }
 }

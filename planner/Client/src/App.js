@@ -3,27 +3,35 @@ import './App.css';
 import axios from 'axios'; 
 import LandingPage from './components/LandingPage';
 import { Container , Col, Row } from 'reactstrap';
+import RegistrationForm from './components/RegisterForm';
+import TaskCard from './components/TaskCard';
+
+function App () {
 
 
-function App() {
+    const userData = 'http://localhost:5000/api/users/';
 
-    const getData = 'http://localhost:5000/api/users/';
-
-    axios
-        .get(getData)
-        .then((res) => {
-            console.log(res.data)
-        })
-        .catch((error) => {
-            console.log(error)
-        })
-        return (
+    // getAllData = () => {
+    // axios
+    //     .get(userData)
+    //     .then((res) => {
+    //         console.log(res.data
+    //     )
+    //     .catch((error) => {
+    //         console.log(error)
+    //     })
+    // }
+        
+    return (
             <Container fluid>
                 <LandingPage/>
+                <RegistrationForm/>
+                <TaskCard/>
                     
                 
             </Container>
         )
 }
 
-export default App;
+
+export default App
