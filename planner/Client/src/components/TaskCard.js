@@ -1,13 +1,17 @@
 import axios from 'axios';
 import React, {Component} from 'react';
 import {
+    Container,
+    Label,
     Card,
-    CardImg,
     CardText,
     CardBody,
     CardLink,
-    CardTitle,
-    CardSubtitle
+    Input,
+    Form,
+    SelectOption,
+    Select,
+    Option
 } from 'reactstrap';
 
 class TaskCard extends Component {
@@ -20,8 +24,7 @@ class TaskCard extends Component {
             category: "",
             content: "",
             dateAdded: "",
-            completionDate: "",
-            dateDeleted: ""
+            completionDate: ""
         }
         this.handleSubmit = this
             .handleSubmit
@@ -31,47 +34,82 @@ class TaskCard extends Component {
 
     handleSubmit = (event) => {
 
-        const {
-            title,
-            category,
-            content,
-            dateAdded,
-            completionDate,
-            dateDeleted
-        } = this.state
+        const {title, category, content, dateAdded, completionDate} = this.state
 
         axios
             .post('http://localhost:5000/api/tasks/create', {
+
             title: title,
             category: category,
             content: content,
             dateAdded: this.date,
-            completionDate: this.date,
-            dateDeleted: this.date
+            completionDate: this.date
         })
-            .then(response => {
+            .then(() => {
                 alert('Task Created')
             })
 
     }
+
+    handleChange = ({target}) => {
+        this.setState({
+            [target.name]: target.value
+        });
+    };
+
     render() {
 
         return (
-            <div>
+            <Container>
                 <Card>
                     <CardBody>
-                        <CardTitle>Card title</CardTitle>
-                        <CardSubtitle>Card subtitle</CardSubtitle>
+                        <Form>
+                            <Label>Title</Label>
+                            <Input
+                                type="text"
+                                name="title"
+                                value={this.state.title}
+                                onChange={this.handleChange}
+                                placeholder="Task Title"/>
+                            <Label>Category</Label>
+                            <Form>
+                                <Input type="select" defaultValue="--" onChange={this.handleChange}>
+                                    <option>Cat 1</option>
+                                    <option>Cat 2</option>
+                                    <option>Cat 3</option>
+                                    <option>Cat 4</option>
+
+                                </Input>
+                            </Form>
+                            <Label>Task</Label>
+                            <Input
+                                type="text"
+                                name="content"
+                                value={this.state.content}
+                                onChange={this.handleChange}
+                                placeholder="What is your task?"/>
+                            <Label>Date Added</Label>
+                            <Input
+                                type="date"
+                                name="dateAdded"
+                                value={this.state.dateAdded}
+                                onChange={this.handleChange}
+                                placeholder="Today's Date"/> {/* </Label> */}
+                            <Label>
+                                Complete By</Label>
+                            <Input
+                                type="date"
+                                name="completionDate"
+                                value={this.state.completionDate}
+                                onChange={this.handleChange}
+                                placeholder="Date to complete"/> {/* <Label>
+                                <Input type="date" name="dateDeleted" value={this.state.dateDeleted} onChange={this.handleChange} placeholder="d"/>
+                            </Label> */}
+                        </Form>
                     </CardBody>
-                    <img width="100%" src="/assets/318x180.svg" alt="Card image cap"/>
-                    <CardBody>
-                        <CardText>Some quick example text to build on the card title and make up the
-                            bulk of the card's content.</CardText>
-                        <CardLink href="#">Card Link</CardLink>
-                        <CardLink href="#">Another Link</CardLink>
-                    </CardBody>
+
                 </Card>
-            </div>
+            </Container>
         );
     }
 };

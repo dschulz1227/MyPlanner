@@ -88,7 +88,7 @@ export default class RegistrationForm extends Component {
                   }
             })
             .catch(error =>{
-                console.log("Registration error, you may not see the high council", error);
+                console.log("Registration error", error);
 
             });
 
@@ -99,7 +99,7 @@ export default class RegistrationForm extends Component {
             <div className = "registerWrap">
                 <form onSubmit = {this.handleSubmit}>
                     <div>
-                        <h5>New Bounty Hunter Registration</h5>
+                        <h5>New User</h5>
                     </div>
                     <div>
                         <input type="text" name="firstName" placeholder="Enter your first name" value= {this.state.firstName} onChange={this.handleChange} required/>
@@ -111,12 +111,12 @@ export default class RegistrationForm extends Component {
                         <input type="text" name="email" placeholder="Enter your email" value= {this.state.email} onChange={this.handleChange} required/>
                     </div>
                     <div>
-                        <input type="password" name="password" placeholder="Create an Access Code" value= {this.state.password} onChange={this.handleChange} required/>
+                        <input type="password" name="password" placeholder="New password" value= {this.state.password} onChange={this.handleChange} required/>
                     </div>
                     <div>
                         <div>
                             <span>
-                                 <button className ="submit" type = "submit">Generate</button>
+                                 <button className ="submit" type = "submit">Create</button>
                             </span>
                         </div>
                     </div>

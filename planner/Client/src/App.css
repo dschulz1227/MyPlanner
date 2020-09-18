@@ -71,3 +71,10 @@ html body{
     max-width: 320px;
   }
 }
+
+#navContainer {
+  top: 0;
+  height: 50px;
+  /* position: fixed; */
+  background-color: #61dafb;
+}

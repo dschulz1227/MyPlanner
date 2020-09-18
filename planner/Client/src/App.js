@@ -1,10 +1,13 @@
 import React from 'react'
 import './App.css';
 import axios from 'axios'; 
-import LandingPage from './components/LandingPage';
 import { Container , Col, Row } from 'reactstrap';
+
 import RegistrationForm from './components/RegisterForm';
 import TaskCard from './components/TaskCard';
+import NavBar from './components/NavBar';
+import LandingPage from './components/LandingPage';
+import Cards from './components/Cards'
 
 function App () {
 
@@ -24,9 +27,11 @@ function App () {
         
     return (
             <Container fluid>
+                <NavBar/>
                 <LandingPage/>
                 <RegistrationForm/>
                 <TaskCard/>
+                <Cards />
                     
                 
             </Container>
