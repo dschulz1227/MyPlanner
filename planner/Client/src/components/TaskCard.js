@@ -71,16 +71,19 @@ class TaskCard extends Component {
                                 value={this.state.title}
                                 onChange={this.handleChange}
                                 placeholder="Task Title"/>
+                            
                             <Label>Category</Label>
-                            <Form>
-                                <Input type="select" defaultValue="--" onChange={this.handleChange}>
-                                    <option>Cat 1</option>
-                                    <option>Cat 2</option>
-                                    <option>Cat 3</option>
-                                    <option>Cat 4</option>
+                            <Input
+                                type="select"
+                                defaultValue=""
+                                placeholder="--"
+                                onChange={this.handleChange}>
+                                <option>Cat 1</option>
+                                <option>Cat 2</option>
+                                <option>Cat 3</option>
+                                <option>Cat 4</option>
+                            </Input>
 
-                                </Input>
-                            </Form>
                             <Label>Task</Label>
                             <Input
                                 type="text"
@@ -88,26 +91,26 @@ class TaskCard extends Component {
                                 value={this.state.content}
                                 onChange={this.handleChange}
                                 placeholder="What is your task?"/>
+                            
                             <Label>Date Added</Label>
                             <Input
                                 type="date"
                                 name="dateAdded"
                                 value={this.state.dateAdded}
                                 onChange={this.handleChange}
-                                placeholder="Today's Date"/> {/* </Label> */}
-                            <Label>
-                                Complete By</Label>
+                                placeholder="Today's Date"/> 
+                            
+                            <Label>Complete By</Label>
                             <Input
                                 type="date"
                                 name="completionDate"
                                 value={this.state.completionDate}
                                 onChange={this.handleChange}
-                                placeholder="Date to complete"/> {/* <Label>
-                                <Input type="date" name="dateDeleted" value={this.state.dateDeleted} onChange={this.handleChange} placeholder="d"/>
-                            </Label> */}
+                                placeholder="Date to complete"/> 
+                            <button onClick={this.handleSubmit} >Add Task
+                            </button>
                         </Form>
                     </CardBody>
-
                 </Card>
             </Container>
         );

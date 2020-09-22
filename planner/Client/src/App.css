@@ -1,6 +1,6 @@
-[class*="col-"]{
+/* [class*="col-"]{
   border: 1px solid red;
-}
+} */
 
 
 html body{
@@ -72,9 +72,20 @@ html body{
   }
 }
 
-#navContainer {
+#navWrapper {
   top: 0;
   height: 50px;
-  /* position: fixed; */
   background-color: #61dafb;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.navLinks{
+  display: flex;
+  justify-content: center;
+  
+  top: 0;
+  height: 50px;
+  background-color: #61dafb;
+  
 }

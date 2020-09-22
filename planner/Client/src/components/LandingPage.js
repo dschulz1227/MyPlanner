@@ -32,7 +32,7 @@ function LandingPage() {
     return (
       <Container>
 
-<h1>Pland</h1>
+<h1 style={{paddingTop: "50px"}}>Pland</h1>
             
         </Container>
     );

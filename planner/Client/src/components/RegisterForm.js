@@ -51,9 +51,8 @@ export default class RegistrationForm extends Component {
         super(props);
 
             this.state = {
+                name: "",
                 email: "",
-                firstName: "",
-                lastName: "",
                 password: ""
             }
         
@@ -61,25 +60,26 @@ export default class RegistrationForm extends Component {
             this.handleChange = this.handleChange.bind(this);
         }
 
+        //handle User input
+
         handleChange(event){
             this.setState({
             [event.target.name]: event.target.value   
             });
         }
+
+        //submit form/add user
+
         handleSubmit(event){
             event.preventDefault();
-            const {email, password, firstName, lastName} = this.state
-
+            const {email, password, name} = this.state
+ 
             Axios.post(`http://localhost:5000/api/users/`,
                 {
-                    
+                        name: name,
                         email: email,
-                        firstName: firstName,
-                        lastName: lastName,
                         password: password
-                        
                 }
-
             ) 
             .then(response => {
                 alert('registered')
@@ -94,31 +94,37 @@ export default class RegistrationForm extends Component {
 
         }
 
+
+
+
+
     render() {
         return (
             <div className = "registerWrap">
-                <form onSubmit = {this.handleSubmit}>
+                <form >
+                    {/* onSubmit = {this.handleSubmit}> */}
                     <div>
                         <h5>New User</h5>
                     </div>
+
                     <div>
-                        <input type="text" name="firstName" placeholder="Enter your first name" value= {this.state.firstName} onChange={this.handleChange} required/>
+                        <input type="text" name="name" placeholder="Enter your name" value= {this.state.name} onChange={this.handleChange} required/>
                     </div>
-                    <div>
-                        <input type="text" name="lastName" placeholder="Enter your last name" value= {this.state.lastName} onChange={this.handleChange} required/>
-                    </div>
+
                     <div>
                         <input type="text" name="email" placeholder="Enter your email" value= {this.state.email} onChange={this.handleChange} required/>
                     </div>
+
                     <div>
-                        <input type="password" name="password" placeholder="New password" value= {this.state.password} onChange={this.handleChange} required/>
+                        <input type="text" name="password" placeholder="New password" value= {this.state.password} onChange={this.handleChange} required/>
                     </div>
+
                     <div>
-                        <div>
+                        
                             <span>
-                                 <button className ="submit" type = "submit">Create</button>
+                                 <button onClick={this.handleSubmit} className ="submit" type = "submit">Create</button>
                             </span>
-                        </div>
+                        
                     </div>
                 </form>
             </div>
