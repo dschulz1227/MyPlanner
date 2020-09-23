@@ -6,7 +6,7 @@
 html body{
   display: grid;
   height: 100%;
-  width: 100%;
+  width:100%;
 }
 
 #planner-text{
@@ -78,6 +78,8 @@ html body{
   background-color: #61dafb;
   padding-top: 25px;
   padding-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .navLinks{
@@ -89,3 +91,10 @@ html body{
   background-color: #61dafb;
   
 }
+
+ul{
+  list-style: none;
+  flex-direction: row;
+  display: flex;
+}
+

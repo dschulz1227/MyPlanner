@@ -56,7 +56,7 @@ export default class RegistrationForm extends Component {
                 password: ""
             }
         
-            this.handleSubmit = this.handleSubmit.bind(this);
+            this.addUser = this.addUser.bind(this);
             this.handleChange = this.handleChange.bind(this);
         }
 
@@ -70,7 +70,7 @@ export default class RegistrationForm extends Component {
 
         //submit form/add user
 
-        handleSubmit(event){
+        addUser(event){
             event.preventDefault();
             const {email, password, name} = this.state
  
@@ -122,7 +122,7 @@ export default class RegistrationForm extends Component {
                     <div>
                         
                             <span>
-                                 <button onClick={this.handleSubmit} className ="submit" type = "submit">Create</button>
+                                 <button onClick={this.addUser} className ="submit" type = "submit">Create</button>
                             </span>
                         
                     </div>

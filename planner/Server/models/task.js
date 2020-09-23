@@ -9,7 +9,8 @@ const taskSchema = new mongoose.Schema({
         // completed: {type: Boolean, default: false},
         completionDate: {type: Date, default: null},
         // deleted: {type: Boolean, default: false},
-        userId:{type:String, requred:true}
+        userId:{type:String, requred:true},
+        isComplete:{type: Boolean}
     }
 );
 

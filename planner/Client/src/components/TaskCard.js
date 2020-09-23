@@ -24,7 +24,8 @@ class TaskCard extends Component {
             category: "",
             content: "",
             dateAdded: "",
-            completionDate: ""
+            completionDate: "",
+            isCompleted: false
         }
         this.handleSubmit = this
             .handleSubmit
@@ -42,14 +43,24 @@ class TaskCard extends Component {
             title: title,
             category: category,
             content: content,
-            dateAdded: this.date,
-            completionDate: this.date
+            dateAdded: dateAdded,
+            completionDate: completionDate
+            
         })
             .then(() => {
                 alert('Task Created')
             })
 
     }
+
+    markAsComplete = (event) => {
+        console.log('Mark Complete Test')
+        axios
+            .put('http://localhost:5000/api/tasks/userId/task')
+            this.setState({isCompleted: true})
+            console.log("State changed")
+    }
+
 
     handleChange = ({target}) => {
         this.setState({
@@ -76,12 +87,10 @@ class TaskCard extends Component {
                             <Input
                                 type="select"
                                 defaultValue=""
-                                placeholder="--"
                                 onChange={this.handleChange}>
-                                <option>Cat 1</option>
-                                <option>Cat 2</option>
-                                <option>Cat 3</option>
-                                <option>Cat 4</option>
+                                <option>Daily</option>
+                                <option>Weekly</option>
+                                <option>Monthly</option>
                             </Input>
 
                             <Label>Task</Label>
@@ -109,6 +118,17 @@ class TaskCard extends Component {
                                 placeholder="Date to complete"/> 
                             <button onClick={this.handleSubmit} >Add Task
                             </button>
+                            {/* <Input 
+                            type="boolean"
+                            value={this.isCompleted}
+                            onChange={this.handleChange}
+                            placeholder="Completed"/>
+
+                                <button onClick={this.markAsComplete}>
+                                    Mark Complete
+                                </button> */}
+
+                                
                         </Form>
                     </CardBody>
                 </Card>

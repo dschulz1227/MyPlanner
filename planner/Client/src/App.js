@@ -1,42 +1,47 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './App.css';
-import axios from 'axios'; 
-import { Container , Col, Row } from 'reactstrap';
-
-import RegistrationForm from './components/RegisterForm';
-import TaskCard from './components/TaskCard';
+// import axios from 'axios'; import {Container, Col, Row} from 'reactstrap';
+// import RegistrationForm from './components/RegisterForm'; import TaskCard
+// from './components/TaskCard';
 import NavBar from './components/NavBar';
-import LandingPage from './components/LandingPage';
-import Cards from './components/Cards'
+import HomePage from './components/HomePage';
+// import Cards from './components/Cards'; import RouteConfigExample from
+// './Routes'
+import {BrowserRouter as Router, Route, Switch, Link} from "react-router-dom";
+import ProfilePage from './components/ProfilePage';
 
-function App () {
+function App() {
 
+    const [thisForm,
+        setThisForm] = useState({})
 
-    const userData = 'http://localhost:5000/api/users/';
-
-    // getAllData = () => {
-    // axios
-    //     .get(userData)
-    //     .then((res) => {
-    //         console.log(res.data
-    //     )
-    //     .catch((error) => {
-    //         console.log(error)
-    //     })
-    // }
-        
     return (
-            <Container fluid>
-                <NavBar/>
-                <LandingPage/>
-                <RegistrationForm/>
-                <TaskCard/>
-                <Cards />
-                    
-                
-            </Container>
-        )
+        <Router>
+<div>
+            <nav>
+            <ul>
+                <li>
+                    <Link to="/">Home</Link>
+                </li>
+                <li>
+                    <Link to="/profile">Profile Page</Link>
+                </li>
+            </ul>
+            </nav>
+
+            <Switch>
+
+                <Route path="/">
+                    <HomePage/>
+                </Route>
+                <Route path="/profile">
+                    <ProfilePage/>
+                </Route>
+
+            </Switch>
+            </div>
+        </Router>
+    )
 }
 
-
-export default App
+export default App;

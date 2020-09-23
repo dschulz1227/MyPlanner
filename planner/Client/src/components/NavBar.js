@@ -1,17 +1,24 @@
 import React from 'react';
-import {Col, Row} from 'reactstrap';
 
-function NavBar() {
+import {Link} from 'react-router-dom';
+
+
+export default function NavBar(props) {
+
     return (
         <div>
-                      
-            <Row  id="navWrapper">
-                <Col className="navLinks" md="6" sm="6" href="www.google.com"> Home</Col>
-                <Col className="navLinks" md="6" sm="6" href="/"> Profile</Col>
-            </Row>
-            
+            <nav>
+                <ul>
+                    <li>
+                        <Link to="/">Home</Link>
+                    </li>
+                    <li>
+                        <Link to="/profile">Profile Page</Link>
+                    </li>
+                </ul>
+            </nav>
         </div>
     )
 }
 
-export default NavBar
+
