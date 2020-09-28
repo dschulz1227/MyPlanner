@@ -1,6 +1,15 @@
 /* [class*="col-"]{
   border: 1px solid red;
 } */
+.App {
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  background-size: cover;
+  background-position: center;
+  margin: 15px
+  /* background-image: url(https://img1.goodfon.com/original/1440x900/f/52/star-wars-mandalorian-skull-4692.jpg) */
+}
 
 
 html body{
@@ -98,3 +107,13 @@ ul{
   display: flex;
 }
 
+@media all and (min-width: 480px) {
+  .Login {
+    padding: 60px 0;
+  }
+
+  .Login form {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+}

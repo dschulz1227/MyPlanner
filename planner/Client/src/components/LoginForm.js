@@ -1,42 +1,79 @@
-import React, {useState} from "react";
-import {Button, FormGroup, FormControl, ControlLabel} from "react-bootstrap";
-import '../App.css'
-export default function Login() {
-    const [email,
-        setEmail] = useState("");
-    const [password,
-        setPassword] = useState("");
+import React from 'react';
+import Axios from 'axios';
 
-    function validateForm() {
-        return email.length > 0 && password.length > 0;
-    }
+class LoginForm extends React.Component{
+    constructor(props){
+        super(props); 
+        this.state = {
+            email: "",
+            password: ""
+        };
+        
+            this.handleSubmit = this.handleSubmit.bind(this);
+            this.handleChange = this.handleChange.bind(this);
+        }
 
-    function handleSubmit(event) {
+        handleChange(event){
+            this.setState({
+            [event.target.name]: event.target.value   
+            });
+        }
+        
+        handleSubmit(event){
+            
         event.preventDefault();
+            const {email, password} = this.state
+
+            Axios.post('http://localhost:5000/api/auth',
+                {
+                        email: email,
+                        password: password
+                }
+
+            ) 
+            .then(response => {
+                console.log(response.data)
+                this.props.setCookieApp(response.data.token)
+                // localStorage.setItem('token', response.data.token);
+                this.props.handleLogin(event)
+                alert('You are logged in.')
+                if (response.data.logged_in) {
+                    this.props.handleSuccessfulAuth(response.data);
+                  }
+            })
+            .catch(error =>{
+                console.log("Oops! something went wrong, check your credentials and try again.", error);
+
+            });
+        }
+
+    render() {
+        return (
+            <div className = "loginWrap">
+                <div className = "input" style={{display:"grid", justifyContent:"center"}}>
+                <form className = "input" onSubmit = {this.handleSubmit}>
+                    <div>
+                        <h5>Log In</h5>
+                    </div>
+                    <div>
+                        <input type="text" name="email" placeholder="Email" value= {this.state.email} onChange={this.handleChange} required/>
+                    </div>
+                    <div>
+                        <input type="password" name="password" placeholder="Password" value= {this.state.password} onChange={this.handleChange} required/>
+                    </div>
+                    <div>
+                        <div>
+                            <span>
+                             <button className ="submit" type = "submit">Enter</button>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+        )
     }
 
-    return (
-        <div className="Login">
-            <form onSubmit={handleSubmit}>
-                <FormGroup controlId="email" bsSize="large">
-                    <ControlLabel>Email</ControlLabel>
-                    <FormControl
-                        autoFocus
-                        type="email"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}/>
-                </FormGroup>
-                <FormGroup controlId="password" bsSize="large">
-                    <ControlLabel>Password</ControlLabel>
-                    <FormControl
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
-                        type="password"/>
-                </FormGroup>
-                <Button block bsSize="large" disabled={!validateForm()} type="submit">
-                    Login
-                </Button>
-            </form>
-        </div>
-    );
 }
+
+export default LoginForm

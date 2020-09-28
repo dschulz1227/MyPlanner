@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import TaskCard from './TaskCard';
+import CreateTask from './CreateTask';
 import {Card, CardBody, CardTitle, CardText, Container, Row, Col} from 'reactstrap';
 import Moment from 'react-moment';
-import 'moment-timezone';
 
 export default class Cards extends Component {
 
@@ -21,9 +20,10 @@ export default class Cards extends Component {
 
     getCollection = () => {
         axios
-            .get('http://localhost:5000/api/tasks/getTasks/5f596b15061a8a5d4bed46a7')
+            .get('http://localhost:5000/api/tasks/getTasks/:loggedInUserId')
             .then(res => {
-                console.log('you will see me', res.data)
+                // console.log('you will see me', res.data)
+                console.log(res)
                 this.setState({cards: res.data})
             })
     }

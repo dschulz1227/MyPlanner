@@ -11,10 +11,10 @@ import {
     Form,
     SelectOption,
     Select,
-    Option
+    Option, CardTitle
 } from 'reactstrap';
 
-class TaskCard extends Component {
+class CreateTask extends Component {
 
     constructor(props) {
         super(props)
@@ -25,13 +25,18 @@ class TaskCard extends Component {
             content: "",
             dateAdded: "",
             completionDate: "",
-            isCompleted: false
+            userId: "",
+            activeUser: ""
         }
+
         this.handleSubmit = this
             .handleSubmit
             .bind(this);
 
     }
+
+/////////////////////////////////
+
 
     handleSubmit = (event) => {
 
@@ -44,23 +49,15 @@ class TaskCard extends Component {
             category: category,
             content: content,
             dateAdded: dateAdded,
-            completionDate: completionDate
-            
+            completionDate: completionDate,
+            userId: this.props.userId
         })
             .then(() => {
+                console.log('Task Created')
                 alert('Task Created')
             })
 
     }
-
-    markAsComplete = (event) => {
-        console.log('Mark Complete Test')
-        axios
-            .put('http://localhost:5000/api/tasks/userId/task')
-            this.setState({isCompleted: true})
-            console.log("State changed")
-    }
-
 
     handleChange = ({target}) => {
         this.setState({
@@ -73,7 +70,11 @@ class TaskCard extends Component {
         return (
             <Container>
                 <Card>
+                    <CardTitle>
+                        Hello {this.activeUser}
+                    </CardTitle>
                     <CardBody>
+                        <button onClick={this.makeActiveUser}> COOL </button>
                         <Form>
                             <Label>Title</Label>
                             <Input
@@ -82,43 +83,51 @@ class TaskCard extends Component {
                                 value={this.state.title}
                                 onChange={this.handleChange}
                                 placeholder="Task Title"/>
-                            
+
                             <Label>Category</Label>
-                            <Input
-                                type="select"
-                                defaultValue=""
-                                onChange={this.handleChange}>
+
+                            <Input type="select" defaultValue="" onChange={this.handleChange}>
                                 <option>Daily</option>
                                 <option>Weekly</option>
                                 <option>Monthly</option>
                             </Input>
 
                             <Label>Task</Label>
+
                             <Input
                                 type="text"
                                 name="content"
                                 value={this.state.content}
                                 onChange={this.handleChange}
                                 placeholder="What is your task?"/>
-                            
+
                             <Label>Date Added</Label>
                             <Input
                                 type="date"
                                 name="dateAdded"
                                 value={this.state.dateAdded}
                                 onChange={this.handleChange}
-                                placeholder="Today's Date"/> 
-                            
+                                placeholder="Today's Date"/>
+
                             <Label>Complete By</Label>
                             <Input
                                 type="date"
                                 name="completionDate"
                                 value={this.state.completionDate}
                                 onChange={this.handleChange}
-                                placeholder="Date to complete"/> 
-                            <button onClick={this.handleSubmit} >Add Task
+                                placeholder="Date to complete"/>
+
+                            <Label>User Id</Label>
+                            <Input
+                                type="string"
+                                name="userId"
+                                value={this.state.userId}
+                                onChange={this.handleChange}
+                                placeholder="Need to change to auto"/>
+                            <button onClick={this.handleSubmit}>Add Task
                             </button>
-                            {/* <Input 
+
+                            {/* <Input
                             type="boolean"
                             value={this.isCompleted}
                             onChange={this.handleChange}
@@ -128,7 +137,6 @@ class TaskCard extends Component {
                                     Mark Complete
                                 </button> */}
 
-                                
                         </Form>
                     </CardBody>
                 </Card>
@@ -137,4 +145,4 @@ class TaskCard extends Component {
     }
 };
 
-export default TaskCard;
+export default CreateTask;

@@ -1,22 +1,24 @@
-import React, {Component, useState} from 'react';
-import axios from 'axios';
-import {Container, Row, Col} from 'reactstrap';
-import RegisterForm from './RegisterForm'
-import LoginForm from './LoginForm';
-import NavBar from './NavBar'
+import React, {useState} from 'react';
+import RegistrationForm from './RegisterForm'
+import LoginForm from './LoginForm'
 
-function HomePage() {
 
-    return (
-        <Container>
-            <h1
-                style={{
-                paddingTop: "50px",
-                justifyContent: "center",
-                display: "flex"
-            }}>Pland</h1>
-        </Container>
-    );
-}
+const HomePage = props => {
+
+  const handleSuccessfulAuth = e => {
+    e.preventDefault();
+  }
+
+  return (
+    <div>
+      <div>
+        <LoginForm setCookieApp={props.setCookieApp} handleLogin={props.handleLogin}/>
+      </div>
+      <div>
+        <RegistrationForm handleSuccessfulAuth={handleSuccessfulAuth}/>
+      </div>
+    </div>
+  )
+};
 
 export default HomePage;
