@@ -3,43 +3,36 @@ import axios from 'axios';
 import CreateTask from './CreateTask';
 import {Card, CardBody, CardTitle, CardText, Container, Row, Col} from 'reactstrap';
 import Moment from 'react-moment';
-
 export default class Cards extends Component {
-
     constructor(props) {
         super(props);
-
+        console.log(props, 'cards')
         this.state = {
             cards: []
         }
     }
-
     componentDidMount() {
         this.getCollection()
     }
-
     getCollection = () => {
         axios
-            .get('http://localhost:5000/api/tasks/getTasks/:loggedInUserId')
+            .get(`http://localhost:5000/api/tasks/getTasks/${this.props.user._id}`)
             .then(res => {
                 // console.log('you will see me', res.data)
                 console.log(res)
                 this.setState({cards: res.data})
             })
     }
-
     goToCarddetails = (userId, collectionCount) => {
         if (!collectionCount) {
             alert('No collections');
             return;
         }
-
         this
             .props
             .history
             .push('/Task', {userId: userId})
     }
-
     deleteTask() {
         console.log('Delete Task Test')
         axios
@@ -48,22 +41,16 @@ export default class Cards extends Component {
                 alert('Task Deleted')
             })
     }
-
     getCollectionByCategory(){
         console.log('getbycategory test')
-        axios.get("http://localhost:5000/getCategoryName/:userId/:categoryName")
+        axios.get(`http://localhost:5000/getCategoryName/${this.props.user._id}/:categoryName`)
         .then (res => {
             const categorizedTasks = res.data
             console.log(categorizedTasks)
         })
     }
-
-
-
-
     render() {
         return (
-
             <Container
                 style={{
                 display: "flex",
@@ -74,8 +61,7 @@ export default class Cards extends Component {
                     .cards
                     .map((task, index) => {
                         return (
-                            <div>
-                                {/* <Grid container direction="row" justify="center" alignItems="center"> */}
+                            <div key = {index}>
                                 <Card
                                     body
                                     style={{
@@ -89,7 +75,6 @@ export default class Cards extends Component {
                                     backgroundColor: "whitesmoke",
                                     borderRadius: "2px"
                                 }}>
-
                                     <CardTitle
                                         style={{
                                         color: "red",
@@ -99,7 +84,7 @@ export default class Cards extends Component {
                                     }}>
                                         {task.title}
                                     </CardTitle>
-                                    <CardText>
+                                    
                                         <div>
                                             <h6>
                                                 Category:
@@ -113,7 +98,6 @@ export default class Cards extends Component {
                                             <span>
                                                 {task.content}
                                             </span>
-
                                             <h6>
                                                 Date:
                                             </h6>
@@ -126,7 +110,6 @@ export default class Cards extends Component {
                                             <span>
                                                 <Moment date={task.completionDate}/>
                                             </span>
-                                        
                                         <Row>
                                             <Col>
                                             <button
@@ -138,7 +121,6 @@ export default class Cards extends Component {
                                                 Mark Complete
                                             </button>
                                             </Col>
-                                            
                                             <Col>
                                             <button
                                                 type="boolean"
@@ -151,13 +133,9 @@ export default class Cards extends Component {
                                             </Col>
                                             </Row>
                                             </div>
-
-
-                                           
-                                    </CardText>
+                                    
                                 </Card>
                             </div>
-
                         )
                     })}
             </Container>
