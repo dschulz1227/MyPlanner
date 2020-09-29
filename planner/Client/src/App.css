@@ -2,119 +2,130 @@
   border: 1px solid red;
 } */
 .App {
-  position: absolute;
-  min-width: 100%;
-  min-height: 100%;
-  background-size: cover;
-  background-position: center;
-  margin: 15px;
-  /* background-color:red */
-  /* background-image: url(https://img1.goodfon.com/original/1440x900/f/52/star-wars-mandalorian-skull-4692.jpg) */
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+    background-size: cover;
+    background-position: center;
+    background: rgb(190,185,185);
+    background-image: url("https://images.unsplash.com/photo-1515847049296-a281d6401047?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80");
+    background-repeat: no-repeat;
+    background-size: cover;
+
 }
 
+.Tasks {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
 
-html body{
-  display: grid;
-  height: 100%;
-  width:100%;
 }
 
-#planner-text{
-  display: flex;
-  color:red;
-  justify-content: center;
-  text-shadow: auto;
+html body {
+    display: grid;
+    height: 100%;
+    width: 100%;
+}
+
+#planner-text {
+    display: flex;
+    color: red;
+    justify-content: center;
+    text-shadow: auto;
 }
 
 .App {
-  text-align: center;
-  display: grid;
+    text-align: center;
+    display: grid;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
 }
-
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-link {
-  color: #61dafb;
+    color: #61dafb;
 }
-
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
-#register-form{
-  display: flex;
-  flex-direction: column;
+#register-form {
+    display: flex;
+    flex-direction: column;
 }
-
 @media all and (min-width: 480px) {
-  .Login {
-    padding: 60px 0;
-  }
+    .Login {
+        padding: 60px 0;
+    }
 
-  .Login form {
-    margin: 0 auto;
-    max-width: 320px;
-  }
+    .Login form {
+        margin: 0 auto;
+        max-width: 320px;
+    }
 }
 
 #navWrapper {
-  top: 0;
-  height: 50px;
-  background-color: #61dafb;
-  padding-top: 25px;
-  padding-bottom: 25px;
-  display: flex;
-  justify-content: space-between;
+    top: 0;
+    height: 50px;
+    background-color: #61dafb;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
 }
 
-.navLinks{
-  display: flex;
-  justify-content: center;
-  
-  top: 0;
-  height: 50px;
-  background-color: #61dafb;
-  
+.navLinks {
+    display: flex;
+    justify-content: center;
+
+    top: 0;
+    height: 50px;
+    background-color: #61dafb;
+
 }
 
-ul{
-  list-style: none;
-  flex-direction: row;
-  display: flex;
+ul {
+    list-style: none;
+    flex-direction: row;
+    display: flex;
 }
-
 @media all and (min-width: 480px) {
-  .Login {
-    padding: 60px 0;
-  }
+    .Login {
+        padding: 60px 0;
+    }
 
-  .Login form {
-    margin: 0 auto;
-    max-width: 320px;
-  }
+    .Login form {
+        margin: 0 auto;
+        max-width: 320px;
+    }
+}
+
+
+.card:hover {
+  --translate-y: -2px;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
+  /* --rotate-y: 180deg; */
 }

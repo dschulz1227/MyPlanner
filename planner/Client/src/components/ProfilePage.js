@@ -1,5 +1,5 @@
-import React, {useState, useEffect, useCallback} from 'react';
-// import {Form, Col, Row, Button} from 'reactstrap';
+import React, {useState, useEffect, useCallback, Component} from 'react';
+import {Form, Col, Row, Button} from 'reactstrap';
 import Axios from 'axios';
 import Cards from './Cards'
 
@@ -10,7 +10,6 @@ function ProfilePage(props) {
     const fetchData = useCallback(() => {
 
 
-        
         Axios
             .get("http://localhost:5000/api/users/" + props.user._id)
             .then((response) => {
@@ -21,22 +20,19 @@ function ProfilePage(props) {
                 console.log(error)
             })
     })
+    
 
-  
     return (
 
-        <div>
+        <div className="Profile">
             {/* <Navigation handleLogout={props.handleLogout}/> */}
-            <h2 className="text-center text-white">Profile</h2>
+            <h2 className="text-center">Profile</h2>
             <div
                 className="container dark-red1"
                 style={{
                 marginTop: "50px"
             }}>
-                <Cards user={props.user}/>
-                <div className="row">
-                   
-                </div>
+                
             </div>
         </div>
 

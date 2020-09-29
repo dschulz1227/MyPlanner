@@ -10,8 +10,8 @@ import NavBar from './components/NavBar';
 import CreateTask from './components/CreateTask';
 import Cards from './components/Cards';
 // import ProtectedRoute from './components/ProtectedRoutes';
-
-
+import {Button} from '@material-ui/core'
+ 
 const jwtDecode = require('jwt-decode');
 function App() {
     const cookieName = 'planned';
@@ -67,6 +67,7 @@ function App() {
         localStorage.removeItem("token");
         window.location.href = '/'
     }
+
     const setCookieApp = (jwt) => {
         let d = new Date();
         setCookie(cookieName, jwt)
@@ -82,16 +83,22 @@ function App() {
                     justifyContent: "space-around",
                     alignContent: "center",
                     backgroundColor: "black",
-                    alignItems: "center"
+                    alignItems: "center",
+                    border:"solid 4px black",
+                    borderRadius:"10px",
+                    opacity:".5"
                 }}>
-                <NavBar />
+                <NavBar>
+                <Button color="primary" onClick={handleLogout}>Log Out</Button>
+                </NavBar>
+
             </nav>
             { user && <div>
 
                 {/** ADD THIS SO USER KNOWS THEY ARE LOGGED IN */}
 
-                {user ? <h3>hello, {user.email}</h3> : <p>Please login to use planner</p>}
-                <button onClick={handleLogout}>Log Out</button>
+                {user ? <h3  style={{color:"white"}}>hello, {user.name}</h3> : <p  style={{color:"white"}}>Please login to use planner</p>}
+                <Button color="primary" onClick={handleLogout}>Log Out</Button>
             </div>
             }
             

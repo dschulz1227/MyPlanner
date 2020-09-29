@@ -58,9 +58,9 @@ class CreateTask extends Component {
     render() {
         return (
             <Container>
-                <Card>
+                <Card style={{width:"350px"}}>
                     <CardTitle>
-                        Hello {this.activeUser}
+                        Hello 'Active User' {this.activeUser}
                     </CardTitle>
                     <CardBody>
                         <Form>
@@ -72,7 +72,8 @@ class CreateTask extends Component {
                                 onChange={this.handleChange}
                                 placeholder="Task Title"/>
                             <Label>Category</Label>
-                            <Input type="select" defaultValue="Repeat?" name="category" onChange={this.handleChange}>
+                            <Input type="select" name="category" onChange={this.handleChange}>
+                                <option value="Just Once">Just Once</option>
                                 <option value="Daily" >Daily</option>
                                 <option value="Weekly">Weekly</option>
                                 <option value="Monthly">Monthly</option>
