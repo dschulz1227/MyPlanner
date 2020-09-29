@@ -10,8 +10,7 @@ import NavBar from './components/NavBar';
 import CreateTask from './components/CreateTask';
 import Cards from './components/Cards';
 // import ProtectedRoute from './components/ProtectedRoutes';
-import {Button} from '@material-ui/core'
- 
+import { Button } from '@material-ui/core'
 const jwtDecode = require('jwt-decode');
 function App() {
     const cookieName = 'planned';
@@ -25,8 +24,6 @@ function App() {
             .keys(obj)
             .length === 0;
     }
-
-
     //CHECK IF USERINFO IS IN LOCAL STORAGE. PASS THE VARIABLE TO useState as shown below
     let isUserFound = localStorage.getItem('token');
     if (isUserFound) {
@@ -40,8 +37,6 @@ function App() {
             // hold the user info in an object. If no jwt found, userInfo will hold the
             // false value.
             //userInfo = jwtDecode(cookies.cookieName);
-
-            
             //ADDED THIS TO STORE USER INFO UPON LOGIN
             let isUserFound = localStorage.getItem('token');
             if (isUserFound) {
@@ -67,7 +62,6 @@ function App() {
         localStorage.removeItem("token");
         window.location.href = '/'
     }
-
     const setCookieApp = (jwt) => {
         let d = new Date();
         setCookie(cookieName, jwt)
@@ -84,36 +78,24 @@ function App() {
                     alignContent: "center",
                     backgroundColor: "black",
                     alignItems: "center",
-                    border:"solid 4px black",
-                    borderRadius:"10px",
-                    opacity:".5"
+                    border: "solid 4px black",
+                    borderRadius: "10px",
+                    opacity: ".5"
                 }}>
-                <NavBar>
-                <Button color="primary" onClick={handleLogout}>Log Out</Button>
+                <NavBar user={user}>
+                    <Button color="primary" onClick={handleLogout}>Log Out</Button>
                 </NavBar>
-
             </nav>
             { user && <div>
-
                 {/** ADD THIS SO USER KNOWS THEY ARE LOGGED IN */}
-
-                {user ? <h3  style={{color:"white"}}>hello, {user.name}</h3> : <p  style={{color:"white"}}>Please login to use planner</p>}
+                {user ? <h3 style={{ color: "white" }}>hello, {user.name}</h3> : <p style={{ color: "white" }}>Please login to use planner</p>}
                 <Button color="primary" onClick={handleLogout}>Log Out</Button>
             </div>
             }
-            
             <Router history={history}>
-                <Route
-                    exact
-                    path='/CreateTask'
-                    handleLogin={handleLogin}
-                    component={CreateTask} />
-                <Route
-                    exact
-                    path='/'
-                    component={HomePage} />
+                <Route exact path='/' component={HomePage} />
+                <Route exact path='/CreateTask' render={props => <CreateTask {...props} user={user} />} />
                 <Route exact path='/profile' render={props => <ProfilePage {...props} user={user} />} />
-                {/* USE THIS LOGIC WHEN NAVIGATING THRU LINKS*/}
                 <Route exact path='/cards' render={props => <Cards {...props} user={user} />} />
             </Router>
         </div>

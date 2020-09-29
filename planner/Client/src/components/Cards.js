@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import CreateTask from './CreateTask';
 import {
     Card,
-    CardBody,
     CardTitle,
-    CardText,
     Container,
     Row,
     Col
@@ -60,35 +57,18 @@ export default class Cards extends Component {
     }
     render() {
         return (
-            <Container className="Tasks"
-            //     style={{
-            //     display: "flex",
-            //     flexDirection: "row"
-            // }}
-            >
+            <div className="container-fluid">
+                <div className="row">
                 {this
                     .state
                     .cards
                     .map((task, index) => {
                         return (
-                            <div className="Tasks, col-md-12"  key={index}>
-                                <Row>
-                                    <Col>
+                                
+                                    <div className="col-md-4 col-lg-3 col-sm-12" key={index}>
                                     <Card
-                                        body
-                                        style={{
-                                        display: "grid",
-                                        justifyContent: "center",
-                                        width: "400px",
-                                        height: "fitContent",
-                                        fontSize: "12px",
-                                        color: "blue",
-                                        margin: "10px",
-                                        backgroundColor: "whitesmoke",
-                                        borderRadius: "2px",
-                                        lineHeight: "fitContent"
-                                        
-                                    }}>
+                                        style={{marginBottom:"5px", padding:"5px"}}
+                                    >
                                         <CardTitle
                                             style={{
                                             color: "red",
@@ -150,12 +130,11 @@ export default class Cards extends Component {
                                         </div>
 
                                     </Card>
-                                    </Col>
-                                </Row>
-                            </div>
+                                    </div>
                         )
                     })}
-            </Container>
+                </div>
+            </div>
         )
     }
 }

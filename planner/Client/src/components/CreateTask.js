@@ -1,5 +1,6 @@
 import axios from 'axios';
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import moment from 'moment'
 import {
     Container,
     Label,
@@ -19,48 +20,51 @@ class CreateTask extends Component {
         console.log('createtask', props)
         this.state = {
             title: "",
-            category: "",
+            category: "Just Once",
             content: "",
             dateAdded: "",
             completionDate: "",
-            userId: "",
-            activeUser: ""
+            userId: props.user._id,
+            activeUser: props.user.name
         }
         this.handleSubmit = this
             .handleSubmit
             .bind(this);
     }
-/////////////////////////////////
-    handleSubmit = (event) => {
+    /////////////////////////////////
+    handleSubmit = async (event) => {
+        
         event.preventDefault();
-        const {title, category, content, dateAdded, completionDate} = this.state
-        axios
-            .post('http://localhost:5000/api/tasks/create', {
-            title: title,
-            category: category,
-            content: content,
-            dateAdded: dateAdded,
-            completionDate: completionDate,
-            userId: this.userId
-        })
-            .then(() => {
-                console.log('Task Created')
-                alert('Task Created')
-            })
+        const { title, category, content, dateAdded, completionDate, userId } = this.state
+
+        console.log('sdf', moment(dateAdded).format('MM/DD/YYYY'))
+        try {
+            let res = await axios
+                .post('http://localhost:5000/api/tasks/create', {
+                    title: title,
+                    category: category,
+                    content: content,
+                    dateAdded: moment(dateAdded).format('MM/DD/YYYY'),
+                    completionDate: moment(completionDate).format('MM/DD/YYYY'),
+                    userId: userId
+                })
+            console.log('Task Created')
+            alert('Task Created')
+        } catch (e) {
+            alert("something went wrong")
+        }
     }
-    handleChange = ({target}) => {
+    handleChange = ({ target }) => {
         this.setState({
             [target.name]: target.value
         });
     };
-
-
     render() {
         return (
             <Container>
-                <Card style={{width:"350px"}}>
+                <Card style={{ width: "350px",margin:"0 auto" }}>
                     <CardTitle>
-                        Hello 'Active User' {this.activeUser}
+                        Hello  '{this.state.activeUser}'
                     </CardTitle>
                     <CardBody>
                         <Form>
@@ -70,9 +74,9 @@ class CreateTask extends Component {
                                 name="title"
                                 value={this.state.title}
                                 onChange={this.handleChange}
-                                placeholder="Task Title"/>
+                                placeholder="Task Title" />
                             <Label>Category</Label>
-                            <Input type="select" name="category" onChange={this.handleChange}>
+                            <Input type="select" value={this.state.category} name="category" onChange={this.handleChange}>
                                 <option value="Just Once">Just Once</option>
                                 <option value="Daily" >Daily</option>
                                 <option value="Weekly">Weekly</option>
@@ -84,26 +88,24 @@ class CreateTask extends Component {
                                 name="content"
                                 value={this.state.content}
                                 onChange={this.handleChange}
-                                placeholder="What is your task?"/>
+                                placeholder="What is your task?" />
                             <Label>Date Added</Label>
                             <Input
                                 type="date"
                                 name="dateAdded"
                                 value={this.state.dateAdded}
                                 onChange={this.handleChange}
-                                placeholder="Today's Date"/>
+                                placeholder="Today's Date" />
                             <Label>Complete By</Label>
                             <Input
                                 type="date"
                                 name="completionDate"
                                 value={this.state.completionDate}
                                 onChange={this.handleChange}
-                                placeholder="Date to complete"/>
-                        
-                            <br/>
-                            <button onClick={this.handleSubmit}>Add Task
+                                placeholder="Date to complete" />
+                            <br />
+                            <button onClick={this.handleSubmit} type="button">Add Task
                             </button>
-                          
                         </Form>
                     </CardBody>
                 </Card>

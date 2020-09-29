@@ -1,7 +1,5 @@
-import React, {useState, useEffect, useCallback, Component} from 'react';
-import {Form, Col, Row, Button} from 'reactstrap';
+import React, {useState, useCallback} from 'react';
 import Axios from 'axios';
-import Cards from './Cards'
 
 function ProfilePage(props) {
 
@@ -26,14 +24,8 @@ function ProfilePage(props) {
 
         <div className="Profile">
             {/* <Navigation handleLogout={props.handleLogout}/> */}
-            <h2 className="text-center">Profile</h2>
-            <div
-                className="container dark-red1"
-                style={{
-                marginTop: "50px"
-            }}>
-                
-            </div>
+            <h2> Profile</h2>
+            
         </div>
 
     )
