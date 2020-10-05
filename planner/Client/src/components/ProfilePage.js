@@ -22,9 +22,16 @@ function ProfilePage(props) {
 
     return (
 
-        <div className="Profile">
+        <div className="profile">
             {/* <Navigation handleLogout={props.handleLogout}/> */}
             <h2> Profile</h2>
+
+            <ul style={{flexDirection:"column"}}>
+                <li>Name</li>
+                <li>Email</li>
+                <li>Occupation</li>
+                <li>Age</li>
+            </ul>
             
         </div>
 

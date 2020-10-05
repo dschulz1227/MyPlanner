@@ -1,24 +1,26 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {
-    Card,
-    CardTitle,
-    Container,
-    Row,
-    Col
-} from 'reactstrap';
+import {Card, CardTitle, Container, Row, Col} from 'reactstrap';
 import Moment from 'react-moment';
+
+import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Icon from '@material-ui/core/Icon';;
+
 export default class Cards extends Component {
     constructor(props) {
         super(props);
         console.log(props, 'cards')
         this.state = {
-            cards: []
+            cards: [],
+            isCompleted: false
         }
     }
+
     componentDidMount() {
         this.getCollection()
     }
+
     getCollection = () => {
         axios
             .get(`http://localhost:5000/api/tasks/getTasks/${this.props.user._id}`)
@@ -28,6 +30,7 @@ export default class Cards extends Component {
                 this.setState({cards: res.data})
             })
     }
+
     goToCarddetails = (userId, collectionCount) => {
         if (!collectionCount) {
             alert('No collections');
@@ -38,14 +41,19 @@ export default class Cards extends Component {
             .history
             .push('/Task', {userId: userId})
     }
-    deleteTask() {
-        console.log('Delete Task Test')
+
+    deleteTask(taskId) {
+        console.log(taskId, 'Check if the id we passed in is not undefined')
+        console.log(this.props.userId, 'this is the userid')
+        console.log(this.props, 'props data')
         axios
-            .delete('http://localhost:5000/api/tasks/delete/:id')
+            .delete(`http://localhost:5000/api/tasks/delete/${this.props.user._id}/${taskId}`)
             .then(res => {
-                alert('Task Deleted')
+                const thisTask = (res.taskId)
+                alert('Task deleteed')
             })
     }
+
     getCollectionByCategory() {
         console.log('getbycategory test')
         axios
@@ -55,20 +63,31 @@ export default class Cards extends Component {
                 console.log(categorizedTasks)
             })
     }
+
+    sortByCategory() {
+        axios
+            .get(`http://localhost:5000/getCategoryName/${this.props.user._id}/`)
+            .then(res => {
+                const categorizedTasks = res.data
+                console.log(categorizedTasks)
+            })
+    }
+
     render() {
         return (
             <div className="container-fluid">
-                <div className="row">
-                {this
-                    .state
-                    .cards
-                    .map((task, index) => {
-                        return (
-                                
-                                    <div className="col-md-4 col-lg-3 col-sm-12" key={index}>
+                <div className="row" style={{justifyContent:"space-evenly"}} >
+                    {this
+                        .state
+                        .cards
+                        .map((task, index) => {
+                            return (
+                                <div className="col-md-4 col-lg-3 col-sm-12 mr-auto" key={index}>
                                     <Card
-                                        style={{marginBottom:"5px", padding:"5px"}}
-                                    >
+                                        style={{
+                                        marginBottom: "5px",
+                                        padding: "5px"
+                                    }}>
                                         <CardTitle
                                             style={{
                                             color: "red",
@@ -106,35 +125,42 @@ export default class Cards extends Component {
                                             </span>
                                             <Row>
                                                 <Col>
-                                                    <button
+                                                    {/* <Button
                                                         type="boolean"
                                                         value={this.state.isCompleted}
                                                         onChange={this.handleChange}
                                                         placeholder="Completed"
                                                         onClick={this.markAsComplete}>
                                                         Mark Complete
-                                                    </button>
+                                                    </Button> */}
+                                                    <Button
+                                                        variant="contained"
+                                                        color="primary"
+                                                        endIcon={< Icon > send </Icon>}
+                                                        value={this.state.isCompleted}
+                                                        onClick={this.markAsComplete}>
+                                                        Completed
+                                                    </Button>
                                                 </Col>
                                                 <Col>
-                                                    <button
-                                                        type="boolean"
-                                                        value={this.state.isCompleted}
-                                                        onChange={this.handleChange}
-                                                        placeholder="Completed"
-                                                        onClick={this.deleteTask}>
-                                                        Delete Task
-                                                    </button>
+                                                    <Button
+                                                        variant="contained"
+                                                        color="secondary"
+                                                        startIcon={< DeleteIcon />}
+                                                        onClick={() => this.deleteTask(task._id)}>
+                                                        Delete
+                                                    </Button>
                                                 </Col>
                                             </Row>
-
                                         </div>
-
                                     </Card>
-                                    </div>
-                        )
-                    })}
+
+                                </div>
+                            )
+                        })}
                 </div>
             </div>
+
         )
     }
 }

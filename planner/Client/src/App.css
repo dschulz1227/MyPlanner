@@ -2,7 +2,7 @@
   border: 1px solid red;
 } */
 .App {
-    position: absolute;
+    position: fixed;
     min-width: 100%;
     min-height: 100%;
     background-size: cover;
@@ -13,8 +13,6 @@
     background-size: cover;
 
 }
-
-
 
 html body {
     display: grid;
@@ -102,11 +100,12 @@ html body {
 
 }
 
-ul {
+/* ul {
     list-style: none;
     flex-direction: row;
     display: flex;
-}
+} */
+
 @media all and (min-width: 480px) {
     .Login {
         padding: 60px 0;
@@ -117,10 +116,19 @@ ul {
         max-width: 320px;
     }
 }
-
-
 .card:hover {
-  --translate-y: -2px;
-  box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
-  /* --rotate-y: 180deg; */
+    --translate-y: -2px;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
+    /* --rotate-y: 180deg; */
 }
+
+.page {
+    padding: 20px;
+}
+
+.profile{
+    display: grid;
+    position: relative;
+    top:0;
+}
+

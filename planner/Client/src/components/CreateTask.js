@@ -24,7 +24,7 @@ class CreateTask extends Component {
             content: "",
             dateAdded: "",
             completionDate: "",
-            userId: props.user._id,
+            userId: props.userId,
             activeUser: props.user.name
         }
         this.handleSubmit = this
@@ -37,7 +37,7 @@ class CreateTask extends Component {
         event.preventDefault();
         const { title, category, content, dateAdded, completionDate, userId } = this.state
 
-        console.log('sdf', moment(dateAdded).format('MM/DD/YYYY'))
+        console.log('testtest', moment(dateAdded).format('MM/DD/YYYY'))
         try {
             let res = await axios
                 .post('http://localhost:5000/api/tasks/create', {
@@ -46,7 +46,7 @@ class CreateTask extends Component {
                     content: content,
                     dateAdded: moment(dateAdded).format('MM/DD/YYYY'),
                     completionDate: moment(completionDate).format('MM/DD/YYYY'),
-                    userId: userId
+                    userId: this.props.userId
                 })
             console.log('Task Created')
             alert('Task Created')
@@ -64,7 +64,7 @@ class CreateTask extends Component {
             <Container>
                 <Card style={{ width: "350px",margin:"0 auto" }}>
                     <CardTitle>
-                        Hello  '{this.state.activeUser}'
+                        Hello {this.state.activeUser}
                     </CardTitle>
                     <CardBody>
                         <Form>

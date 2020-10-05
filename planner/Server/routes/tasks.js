@@ -128,7 +128,7 @@ router.put("/update/:taskId", async(req, res, next) => {
         });
 });
 //DELETE
-router.delete('/delete/:taskId', async(req, res) => {
+router.delete('/delete/:userId/:taskId', async(req, res) => {
     try {
         Task
             .findOneAndRemove({
@@ -136,7 +136,7 @@ router.delete('/delete/:taskId', async(req, res) => {
             }, function (err, doc) {
                 if (err) 
                     return res.send(500, {error: err});
-                return res.send("Task id deleted");
+                return res.send("Task deleted");
             });
     } catch (ex) {
         return res
