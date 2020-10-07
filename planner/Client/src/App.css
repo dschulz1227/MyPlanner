@@ -1,8 +1,7 @@
-/* [class*="col-"]{
-  border: 1px solid red;
-} */
+
 .App {
-    position: fixed;
+    display: grid;
+    position: static;
     min-width: 100%;
     min-height: 100%;
     background-size: cover;
@@ -27,10 +26,6 @@ html body {
     text-shadow: auto;
 }
 
-.App {
-    text-align: center;
-    display: grid;
-}
 
 .App-logo {
     height: 40vmin;
@@ -132,3 +127,7 @@ html body {
     top:0;
 }
 
+.myNavLink :hover{
+    cursor: pointer;
+    text-shadow: 1ch;
+}

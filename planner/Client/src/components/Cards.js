@@ -1,11 +1,20 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Card, CardTitle, Container, Row, Col} from 'reactstrap';
+import {
+    Card,
+    CardTitle,
+    Container,
+    Row,
+    Col,
+    Input
+} from 'reactstrap';
 import Moment from 'react-moment';
 
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Icon from '@material-ui/core/Icon';;
+import Icon from '@material-ui/core/Icon';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu'
 
 export default class Cards extends Component {
     constructor(props) {
@@ -13,14 +22,31 @@ export default class Cards extends Component {
         console.log(props, 'cards')
         this.state = {
             cards: [],
-            isCompleted: false
+            isCompleted: false,
+            category: '',
+            selected: '',
+            anchorEl: null
         }
+        this.handleChange = this
+            .handleChange
+            .bind(this);
+        this.renderOptions = this
+            .renderOptions
+            .bind(this);
+        this.handleClick = this
+            .handleClick
+            .bind(this);
+        this.handleClose = this
+            .handleClose
+            .bind(this);
+
     }
 
     componentDidMount() {
-        this.getCollection()
+        alert('Here are your tasks')
     }
 
+    //get entire collection
     getCollection = () => {
         axios
             .get(`http://localhost:5000/api/tasks/getTasks/${this.props.user._id}`)
@@ -54,35 +80,90 @@ export default class Cards extends Component {
             })
     }
 
-    getCollectionByCategory() {
+    getCollectionByCategory(category) {
         console.log('getbycategory test')
         axios
-            .get(`http://localhost:5000/getCategoryName/${this.props.user._id}/:categoryName`)
+            .get(`http://localhost:5000/getCategoryName/${this.props.user._id}/${this.state.category}`)
             .then(res => {
                 const categorizedTasks = res.data
                 console.log(categorizedTasks)
+                this.setState({cards: categorizedTasks})
             })
     }
 
-    sortByCategory() {
-        axios
-            .get(`http://localhost:5000/getCategoryName/${this.props.user._id}/`)
-            .then(res => {
-                const categorizedTasks = res.data
-                console.log(categorizedTasks)
-            })
+    //Set category to search by
+    handleChange(value) {
+        this.setState({category: value});
+    }
+
+    //dropdown menu functions
+    handleClick = (event) => {
+        this.setState({anchorEl: event.currentTarget})
+
+    };
+
+    handleClose = () => {
+        this.setState({anchorEl: null});
+    }
+    //Category options to be displayed
+
+    renderOptions = () => {
+        return this
+            .state
+            .cards
+            .map((category, i) => {
+                return (
+                    <div key={i}>
+                        <MenuItem value={'JustOnce'} primaryText={'JustOnce'} Just once/>
+                        <MenuItem value={'Daily'} primaryText={'Daily'}/>
+                        <MenuItem value={'Weekly'} primaryText={'Weekly'}/>
+                        <MenuItem value={'Monthly'} primaryText={'Monthly'}/>
+                    </div>
+                );
+            });
     }
 
     render() {
         return (
             <div className="container-fluid">
-                <div className="row" style={{justifyContent:"space-evenly"}} >
+                <Button onClick={this.getCollection}>Display All</Button>
+
+                <Button
+                    aria-controls="simple-menu"
+                    aria-haspopup="true"
+                    onClick={this.handleClick}>
+                    Open Menu
+                </Button>
+
+                <div>
+                    <Menu
+                        id="simple-menu"
+                        anchorEl={this.state.anchorEl}
+                        keepMounted
+                        open={Boolean(this.state.anchorEl)}
+                        onClose={this.handleClose}
+> 
+                        {this.renderOptions}
+
+                    </Menu>
+                </div>
+
+                <div
+                    className="row"
+                    style={{
+                    justifyContent: "space-evenly"
+                }}>
                     {this
                         .state
                         .cards
                         .map((task, index) => {
                             return (
-                                <div className="col-md-4 col-lg-3 col-sm-12 mr-auto" key={index}>
+                                <div
+                                    className="col-md-4 col-lg-3 col-sm-12 mr-auto"
+                                    key={index}
+                                    style={{
+                                    alignItems: "center"
+                                }}>
                                     <Card
                                         style={{
                                         marginBottom: "5px",
@@ -125,18 +206,10 @@ export default class Cards extends Component {
                                             </span>
                                             <Row>
                                                 <Col>
-                                                    {/* <Button
-                                                        type="boolean"
-                                                        value={this.state.isCompleted}
-                                                        onChange={this.handleChange}
-                                                        placeholder="Completed"
-                                                        onClick={this.markAsComplete}>
-                                                        Mark Complete
-                                                    </Button> */}
                                                     <Button
                                                         variant="contained"
                                                         color="primary"
-                                                        endIcon={< Icon > send </Icon>}
+                                                        sendicon={< sendIcon />}
                                                         value={this.state.isCompleted}
                                                         onClick={this.markAsComplete}>
                                                         Completed
@@ -156,6 +229,7 @@ export default class Cards extends Component {
                                     </Card>
 
                                 </div>
+
                             )
                         })}
                 </div>

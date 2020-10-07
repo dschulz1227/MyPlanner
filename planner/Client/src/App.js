@@ -72,7 +72,7 @@ function App() {
         <div className="App">
             <Nav
                 user={user}
-                defaultActiveKey="/"
+                defaultactivekey="/"
                 style={{
                 justifyContent: "space-evenly",
                 height: "50px",
@@ -85,13 +85,11 @@ function App() {
                 fontFamily:"monospace",
                 fontSize:"larger",
                 fontWeight:"bold"
-
-                
             }}>
 
-                <a onClick={() => history.push('/CreateTask')}>Home</a>
-                <a onClick={() => history.push('Profile')}>Profile</a>
-                <a onClick={() => history.push('cards')}>All Tasks</a>
+                <a className="myNavLink" onClick={() => history.push('/CreateTask')}>Home</a>
+                <a className="myNavLink" onClick={() => history.push('Profile')}>Profile</a>
+                <a className="myNavLink" onClick={() => history.push('cards')}>All Tasks</a>
                 <Button color="primary" onClick={handleLogout}>Log Out</Button>
 
             </Nav>
@@ -112,6 +110,10 @@ function App() {
                     path='/profile'
                     render={props => <ProfilePage {...props} user={user}/>}/>
                 <Route exact path='/cards' render={props => <Cards {...props} user={user}/>}/>
+                {/* <Route exact path='/dailytasks' render={props => <DailyTasks {...props} user={user}/>}/>
+                <Route exact path='/weeklytasks' render={props => <WeeklyTasks {...props} user={user}/>}/>
+                <Route exact path='/monthlytasks' render={props => <MonthlyTasks {...props} user={user}/>}/> */}
+
             </Router>
         </div>
     )

@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, Component} from 'react';
 import Axios from 'axios';
 
 function ProfilePage(props) {
@@ -6,7 +6,6 @@ function ProfilePage(props) {
     let [responseData,
         setResponseData] = useState('');
     const fetchData = useCallback(() => {
-
 
         Axios
             .get("http://localhost:5000/api/users/" + props.user._id)
@@ -23,9 +22,7 @@ function ProfilePage(props) {
     return (
 
         <div className="profile">
-            {/* <Navigation handleLogout={props.handleLogout}/> */}
             <h2> Profile</h2>
-
             <ul style={{flexDirection:"column"}}>
                 <li>Name</li>
                 <li>Email</li>

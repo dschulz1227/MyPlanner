@@ -5,14 +5,10 @@ import {
     Container,
     Label,
     Card,
-    CardText,
     CardBody,
-    CardLink,
     Input,
     Form,
-    SelectOption,
-    Select,
-    Option, CardTitle
+    CardTitle
 } from 'reactstrap';
 class CreateTask extends Component {
     constructor(props) {
@@ -24,7 +20,7 @@ class CreateTask extends Component {
             content: "",
             dateAdded: "",
             completionDate: "",
-            userId: props.userId,
+            userId: props.user._id,
             activeUser: props.user.name
         }
         this.handleSubmit = this
@@ -33,10 +29,8 @@ class CreateTask extends Component {
     }
     /////////////////////////////////
     handleSubmit = async (event) => {
-        
         event.preventDefault();
         const { title, category, content, dateAdded, completionDate, userId } = this.state
-
         console.log('testtest', moment(dateAdded).format('MM/DD/YYYY'))
         try {
             let res = await axios
@@ -46,7 +40,7 @@ class CreateTask extends Component {
                     content: content,
                     dateAdded: moment(dateAdded).format('MM/DD/YYYY'),
                     completionDate: moment(completionDate).format('MM/DD/YYYY'),
-                    userId: this.props.userId
+                    userId: userId
                 })
             console.log('Task Created')
             alert('Task Created')
