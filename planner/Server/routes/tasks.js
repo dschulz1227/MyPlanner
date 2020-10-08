@@ -145,9 +145,17 @@ router.delete('/delete/:userId/:taskId', async(req, res) => {
     }
 });
 //READ
-router.get('/getTasks/:userId', async(req, res) => {
+router.get('/getTasks/:userId/category/:categoryName', async(req, res) => {
     try {
-        let tasks = await Task.find({userId: req.params.userId})
+
+        let params = {}
+        if(req.params.categoryName == 'All'){
+            params = {userId: req.params.userId}
+        }else {
+            params = {userId: req.params.userId, category: req.params.categoryName}
+        }
+
+        let tasks = await Task.find(params)
         return res.send(tasks)
     } catch (ex) {
         return res

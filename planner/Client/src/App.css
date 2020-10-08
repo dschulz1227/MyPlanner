@@ -12,6 +12,9 @@
     background-size: cover;
 
 }
+.container-fluid{
+    min-height: calc(100vh - 0px) !important;
+}
 
 html body {
     display: grid;
@@ -85,15 +88,6 @@ html body {
     justify-content: space-between;
 }
 
-.navLinks {
-    display: flex;
-    justify-content: center;
-
-    top: 0;
-    height: 50px;
-    background-color: #61dafb;
-
-}
 
 /* ul {
     list-style: none;

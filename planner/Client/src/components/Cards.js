@@ -1,20 +1,15 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {
-    Card,
-    CardTitle,
-    Container,
-    Row,
-    Col,
-    Input
-} from 'reactstrap';
+import {Card, CardTitle, Row, Col} from 'reactstrap';
 import Moment from 'react-moment';
+import MyMenu from './Menu'
 
+//css component imports
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Icon from '@material-ui/core/Icon';
 import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu'
+
+////////////
 
 export default class Cards extends Component {
     constructor(props) {
@@ -39,34 +34,29 @@ export default class Cards extends Component {
         this.handleClose = this
             .handleClose
             .bind(this);
-
     }
 
     componentDidMount() {
-        alert('Here are your tasks')
+        console.log(this.state.cards)
+        this.getCollection('All')
     }
 
     //get entire collection
-    getCollection = () => {
-        axios
-            .get(`http://localhost:5000/api/tasks/getTasks/${this.props.user._id}`)
+    getCollection = (name) => {
+        console.log('yeay it works', name)
+
+
+        axios.get(`http://localhost:5000/api/tasks/getTasks/${this.props.user._id}/category/${name}`)
             .then(res => {
                 // console.log('you will see me', res.data)
-                console.log(res)
+                console.log('card details', res)
                 this.setState({cards: res.data})
             })
     }
 
-    goToCarddetails = (userId, collectionCount) => {
-        if (!collectionCount) {
-            alert('No collections');
-            return;
-        }
-        this
-            .props
-            .history
-            .push('/Task', {userId: userId})
-    }
+    // goToCarddetails = (userId, collectionCount) => {     if (!collectionCount) {
+    //        alert('No collections');         return;     }     this         .props
+    //         .history         .push('/Task', {userId: userId}) }
 
     deleteTask(taskId) {
         console.log(taskId, 'Check if the id we passed in is not undefined')
@@ -76,18 +66,7 @@ export default class Cards extends Component {
             .delete(`http://localhost:5000/api/tasks/delete/${this.props.user._id}/${taskId}`)
             .then(res => {
                 const thisTask = (res.taskId)
-                alert('Task deleteed')
-            })
-    }
-
-    getCollectionByCategory(category) {
-        console.log('getbycategory test')
-        axios
-            .get(`http://localhost:5000/getCategoryName/${this.props.user._id}/${this.state.category}`)
-            .then(res => {
-                const categorizedTasks = res.data
-                console.log(categorizedTasks)
-                this.setState({cards: categorizedTasks})
+                alert(thisTask + 'Task deleteed') //The deleted taskId is coming back as undefined
             })
     }
 
@@ -99,7 +78,6 @@ export default class Cards extends Component {
     //dropdown menu functions
     handleClick = (event) => {
         this.setState({anchorEl: event.currentTarget})
-
     };
 
     handleClose = () => {
@@ -108,26 +86,28 @@ export default class Cards extends Component {
     //Category options to be displayed
 
     renderOptions = () => {
-        return this
-            .state
-            .cards
-            .map((category, i) => {
-                return (
-                    <div key={i}>
-                        <MenuItem value={'JustOnce'} primaryText={'JustOnce'} Just once/>
-                        <MenuItem value={'Daily'} primaryText={'Daily'}/>
-                        <MenuItem value={'Weekly'} primaryText={'Weekly'}/>
-                        <MenuItem value={'Monthly'} primaryText={'Monthly'}/>
-                    </div>
-                );
-            });
+        return (
+            <div>
+                <MenuItem
+                    onClick={() => this.getCollection('All')}
+                    value={'JustOnce'}
+                    primaryText={'JustOnce'}>Just Once</MenuItem>
+                <MenuItem onClick={this.getCollection} value={'Daily'} primaryText={'Daily'}>Daily</MenuItem>
+                <MenuItem onClick={this.getCollection} value={'Weekly'} primaryText={'Weekly'}>Weekly</MenuItem>
+                <MenuItem
+                    onClick={this.getCollection}
+                    value={'Monthly'}
+                    primaryText={'Monthly'}>Monthly</MenuItem>
+            </div>
+        )
     }
 
     render() {
+        console.log(this.state.cards)
         return (
-            <div className="container-fluid">
-                <Button onClick={this.getCollection}>Display All</Button>
-
+            <div className ="container-fluid">
+                <Button onClick={() => this.getCollection('All')} value={this.state.cards}>Display All</Button>
+                <MyMenu getCollection={this.getCollection} />{/*             
                 <Button
                     aria-controls="simple-menu"
                     aria-haspopup="true"
@@ -135,18 +115,25 @@ export default class Cards extends Component {
                     Open Menu
                 </Button>
 
-                <div>
+                
                     <Menu
                         id="simple-menu"
                         anchorEl={this.state.anchorEl}
                         keepMounted
-                        open={Boolean(this.state.anchorEl)}
-                        onClose={this.handleClose}
-> 
-                        {this.renderOptions}
-
+                        open={Boolean(this.anchorEl)}
+                        onClose={this.handleClose}>
+                        <MenuItem
+                            onClick={this.getCollection}
+                            value={'JustOnce'}
+                            primaryText={'JustOnce'}>Just Once</MenuItem>
+                        <MenuItem onClick={this.getCollection} value={'Daily'} primaryText={'Daily'}>Daily</MenuItem>
+                        <MenuItem onClick={this.getCollection} value={'Weekly'} primaryText={'Weekly'}>Weekly</MenuItem>
+                        <MenuItem
+                            onClick={this.getCollection}
+                            value={'Monthly'}
+                            primaryText={'Monthly'}>Monthly</MenuItem>
                     </Menu>
-                </div>
+             */}
 
                 <div
                     className="row"
@@ -234,6 +221,7 @@ export default class Cards extends Component {
                         })}
                 </div>
             </div>
+            
 
         )
     }
