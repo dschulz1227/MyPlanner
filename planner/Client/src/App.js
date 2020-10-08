@@ -1,13 +1,13 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState} from 'react'
 import './App.css';
-import {Row, Col} from 'reactstrap';
 import {Route, Router, useHistory} from "react-router-dom";
 import {useCookies} from 'react-cookie';
 //my Pages
-import ProfilePage from './components/ProfilePage';
+// import ProfilePage from './components/ProfilePage';
 import HomePage from './components/HomePage';
 import CreateTask from './components/CreateTask';
 import Cards from './components/Cards';
+import MyProfile from './components/MyProfile'
 // import ProtectedRoute from './components/ProtectedRoutes';
 import {Button} from '@material-ui/core'
 import {Nav} from 'react-bootstrap'
@@ -80,11 +80,11 @@ function App() {
                 alignItems: "center",
                 opacity: '.5',
                 marginLeft: "15px",
-                marginRight:"15px",
-                borderRadius:"7.5px",
-                fontFamily:"monospace",
-                fontSize:"larger",
-                fontWeight:"bold"
+                marginRight: "15px",
+                borderRadius: "7.5px",
+                fontFamily: "monospace",
+                fontSize: "larger",
+                fontWeight: "bold"
             }}>
 
                 <a className="myNavLink" onClick={() => history.push('/CreateTask')}>Home</a>
@@ -108,11 +108,8 @@ function App() {
                 <Route
                     exact
                     path='/profile'
-                    render={props => <ProfilePage {...props} user={user}/>}/>
+                    render={props => <MyProfile {...props} user={user} component={MyProfile}/>}/>
                 <Route exact path='/cards' render={props => <Cards {...props} user={user}/>}/>
-                {/* <Route exact path='/dailytasks' render={props => <DailyTasks {...props} user={user}/>}/>
-                <Route exact path='/weeklytasks' render={props => <WeeklyTasks {...props} user={user}/>}/>
-                <Route exact path='/monthlytasks' render={props => <MonthlyTasks {...props} user={user}/>}/> */}
 
             </Router>
         </div>

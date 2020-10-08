@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 const config = require('config')
-mongoose.set('useCreateIndex', true); 
+mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
-
 
 function connectDB() {
     mongoose.connect(config.get('mongoURI'), {

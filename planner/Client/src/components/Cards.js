@@ -45,8 +45,8 @@ export default class Cards extends Component {
     getCollection = (name) => {
         console.log('yeay it works', name)
 
-
-        axios.get(`http://localhost:5000/api/tasks/getTasks/${this.props.user._id}/category/${name}`)
+        axios
+            .get(`http://localhost:5000/api/tasks/getTasks/${this.props.user._id}/category/${name}`)
             .then(res => {
                 // console.log('you will see me', res.data)
                 console.log('card details', res)
@@ -54,9 +54,16 @@ export default class Cards extends Component {
             })
     }
 
-    // goToCarddetails = (userId, collectionCount) => {     if (!collectionCount) {
-    //        alert('No collections');         return;     }     this         .props
-    //         .history         .push('/Task', {userId: userId}) }
+    goToCarddetails = (userId, collectionCount) => {
+        if (!collectionCount) {
+            alert('No collections');
+            return;
+        }
+        this
+            .props
+            .history
+            .push('/Task', {userId: userId})
+    }
 
     deleteTask(taskId) {
         console.log(taskId, 'Check if the id we passed in is not undefined')
@@ -85,55 +92,12 @@ export default class Cards extends Component {
     }
     //Category options to be displayed
 
-    renderOptions = () => {
-        return (
-            <div>
-                <MenuItem
-                    onClick={() => this.getCollection('All')}
-                    value={'JustOnce'}
-                    primaryText={'JustOnce'}>Just Once</MenuItem>
-                <MenuItem onClick={this.getCollection} value={'Daily'} primaryText={'Daily'}>Daily</MenuItem>
-                <MenuItem onClick={this.getCollection} value={'Weekly'} primaryText={'Weekly'}>Weekly</MenuItem>
-                <MenuItem
-                    onClick={this.getCollection}
-                    value={'Monthly'}
-                    primaryText={'Monthly'}>Monthly</MenuItem>
-            </div>
-        )
-    }
-
     render() {
         console.log(this.state.cards)
         return (
-            <div className ="container-fluid">
+            <div className="container-fluid">
                 <Button onClick={() => this.getCollection('All')} value={this.state.cards}>Display All</Button>
-                <MyMenu getCollection={this.getCollection} />{/*             
-                <Button
-                    aria-controls="simple-menu"
-                    aria-haspopup="true"
-                    onClick={this.handleClick}>
-                    Open Menu
-                </Button>
-
-                
-                    <Menu
-                        id="simple-menu"
-                        anchorEl={this.state.anchorEl}
-                        keepMounted
-                        open={Boolean(this.anchorEl)}
-                        onClose={this.handleClose}>
-                        <MenuItem
-                            onClick={this.getCollection}
-                            value={'JustOnce'}
-                            primaryText={'JustOnce'}>Just Once</MenuItem>
-                        <MenuItem onClick={this.getCollection} value={'Daily'} primaryText={'Daily'}>Daily</MenuItem>
-                        <MenuItem onClick={this.getCollection} value={'Weekly'} primaryText={'Weekly'}>Weekly</MenuItem>
-                        <MenuItem
-                            onClick={this.getCollection}
-                            value={'Monthly'}
-                            primaryText={'Monthly'}>Monthly</MenuItem>
-                    </Menu>
-             */}
+                <MyMenu getCollection={this.getCollection}/>
 
                 <div
                     className="row"
@@ -221,7 +185,6 @@ export default class Cards extends Component {
                         })}
                 </div>
             </div>
-            
 
         )
     }

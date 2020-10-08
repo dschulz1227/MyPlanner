@@ -8,13 +8,10 @@ const taskSchema = new mongoose.Schema({
         content: {type: String, required: true, minlength: 5, maxlength: 300},
         dateAdded: {type: String, required: true },
         completionDate: {type: String, default: null}
-        
     }
 );
 
-
 const Task = mongoose.model('Task', taskSchema);
-
 
 function validateTask(task) {
     const schema = Joi.object({
@@ -27,7 +24,6 @@ function validateTask(task) {
     });
     return schema.validate(task);
 }
-
 
 exports.Task = Task;
 exports.validateTask = validateTask;

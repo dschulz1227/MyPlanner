@@ -1,6 +1,4 @@
-const {Task , taskSchema}  = require ('./task')
-
-
+const { taskSchema }  = require ('./task')
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const config = require('config');
@@ -15,17 +13,11 @@ const userSchema = new mongoose.Schema({
     tasks: {type: [taskSchema], default: [] }
     })
    
-
-
-
 userSchema.methods.generateAuthToken = function () {
     return jwt.sign({ _id: this._id, name: this.name, email: this.email}, config.get('jwtSecret'));
    };
 
-
-
 const User = mongoose.model('User', userSchema);
-
 
 function validateUser(user) {
     const schema = Joi.object({
@@ -37,7 +29,6 @@ function validateUser(user) {
         });
     return schema.validate(user);
 }
-
 
 exports.User = User;
 exports.validateUser = validateUser;

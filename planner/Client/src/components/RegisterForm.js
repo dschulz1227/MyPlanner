@@ -1,19 +1,3 @@
-// import React from 'react'; import useForm from './useForm'; import
-// {Container, Col, Row, Button, Form, Label, Input} from 'reactstrap'; const
-// RegisterForm = () => {     const { values, handleChange, handleSubmit } =
-// useForm(register);     function register(){         alert(`Thanks for
-// registering! Check your email ${values.email} for confirmation`);     }
-// return (         <Container fluid>         <Row>         <Form
-// id="register-form" onSubmit={handleSubmit}>             <Label>   Email:
-//            <Input                     type="email"        name="email"
-//              onChange={handleChange}       value={values.email}
-//       required={true}  />             </Label>             <Label>
-//      Password:          <Input                     type="password"
-// name="password"                     onChange={handleChange}
-// value={values.password}                     required={true} />
-// </Label>             <Button color="primary" type="submit">Register</Button>
-//        </Form>         </Row> </Container>     ); }; export default
-// RegisterForm;
 import React, {Component} from 'react';
 import Axios from 'axios';
 
@@ -68,55 +52,62 @@ export default class RegistrationForm extends Component {
             });
     }
 
-render() {
-    return (
-        <div className="registerWrap">
-            <form >
-                {/* onSubmit = {this.handleSubmit}> */}
-                <div>
-                    <h5>New User</h5>
-                </div>
+    render() {
+        return (
+            <div className="registerWrap">
+                <form >
+                    <div>
+                        <h5>New User</h5>
+                    </div>
 
-                <div>
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="Enter your name"
-                        value={this.state.name}
-                        onChange={this.handleChange}
-                        required/>
-                </div>
+                    <div style={{
+                        marginTop: "3px"
+                    }}>
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Enter your name"
+                            value={this.state.name}
+                            onChange={this.handleChange}
+                            required/>
+                    </div>
 
-                <div>
-                    <input
-                        type="text"
-                        name="email"
-                        placeholder="Enter your email"
-                        value={this.state.email}
-                        onChange={this.handleChange}
-                        required/>
-                </div>
+                    <div style={{
+                        marginTop: "3px"
+                    }}>
+                        <input
+                            type="text"
+                            name="email"
+                            placeholder="Enter your email"
+                            value={this.state.email}
+                            onChange={this.handleChange}
+                            required/>
+                    </div>
 
-                <div>
-                    <input
-                        type="text"
-                        name="password"
-                        placeholder="New password"
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                        required/>
-                </div>
+                    <div style={{
+                        marginTop: "3px"
+                    }}>
+                        <input
+                            type="text"
+                            name="password"
+                            placeholder="New password"
+                            value={this.state.password}
+                            onChange={this.handleChange}
+                            required/>
+                    </div>
 
-                <div>
+                    <div style={{
+                        marginTop: "3px"
+                    }}>
 
-                    <span>
-                        <button onClick={this.addUser} className="submit" type="submit">Create</button>
-                    </span>
+                        <span>
+                            <button onClick={this.addUser} className="submit" type="submit">Create</button>
+                        </span>
 
-                </div>
-            </form>
-        </div>
-    )
-}
+                    </div>
+                </form>
+            </div>
+        )
+    }
 
 }

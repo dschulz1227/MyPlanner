@@ -1,6 +1,5 @@
 
 .App {
-    display: grid;
     position: static;
     min-width: 100%;
     min-height: 100%;
@@ -10,11 +9,12 @@
     background-image: url("https://images.unsplash.com/photo-1515847049296-a281d6401047?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80");
     background-repeat: no-repeat;
     background-size: cover;
+    min-height: calc(100vh - 0px) !important;
 
 }
-.container-fluid{
+/* .container-fluid{
     min-height: calc(100vh - 0px) !important;
-}
+} */
 
 html body {
     display: grid;
@@ -115,13 +115,18 @@ html body {
     padding: 20px;
 }
 
-.profile{
-    display: grid;
-    position: relative;
-    top:0;
-}
+
 
 .myNavLink :hover{
     cursor: pointer;
     text-shadow: 1ch;
+}
+
+#profileList{
+    padding-left: 0 !important;
+}
+
+input{
+    border-radius:12px;
+    border-width: 1px ;
 }

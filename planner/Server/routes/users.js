@@ -1,12 +1,9 @@
 const {User, validateUser} = require('../models/user');
-const {Task,validateTask} = require('../models/task');
+const {Task, validateTask} = require('../models/task');
 const express = require('express');
 const router = express.Router();
 const task = require('../routes/tasks');
 const bcrypt = require('bcrypt');
-
-
-
 
 //CREATE TASK BY USER
 router.post("/tasks/create", async(req, res, next) => {
@@ -17,7 +14,14 @@ router.post("/tasks/create", async(req, res, next) => {
             return res.status(400).send(error);
         
         // Need to validate body before continuing
-        const task = new Task({userId: req.body._Id,title: req.body.title, category: req.body.category, content: req.body.content, dateAdded: req.body.dateAdded, completionDate: req.body.completionDate})
+        const task = new Task({
+            userId: req.body._Id,
+            title: req.body.title,
+            category: req.body.category,
+            content: req.body.content,
+            dateAdded: req.body.dateAdded,
+            completionDate: req.body.completionDate
+        })
         await task.save();
         return res.send(task);
     } catch (ex) {
@@ -27,19 +31,17 @@ router.post("/tasks/create", async(req, res, next) => {
     }
 });
 
-
-
-
 //CREATE USER
-router.post('/', async (req, res) => {
+router.post('/', async(req, res) => {
     try {
-        const { error } = validateUser(req.body);
+        const {error} = validateUser(req.body);
 
-        if (error)
+        if (error) 
             return res.status(400).send(error);
-
-        let user = await User.findOne({ email: req.body.email });
-        if (user) return res.status(400).send("Credentials Taken")
+        
+        let user = await User.findOne({email: req.body.email});
+        if (user) 
+            return res.status(400).send("Credentials Taken")
 
         const salt = await bcrypt.genSalt(10);
 
@@ -50,34 +52,27 @@ router.post('/', async (req, res) => {
         })
 
         await user.save();
-        return res.send({ _id: user._id, name: user.name, email: user.email });
-    }
-
-    catch (ex) {
-        return res.status(500).send(`Internal Server Error: ${ex}`)
+        return res.send({_id: user._id, name: user.name, email: user.email});
+    } catch (ex) {
+        return res
+            .status(500)
+            .send(`Internal Server Error: ${ex}`)
     }
 })
 
-
-
-
 //Get ALL Users Request
-
 router.get('/:userId', async(req, res) => {
     try {
         const allUsersRequests = await User.find();
         return res.send(allUsersRequests);
-
     } catch (ex) {
         return res
             .status(500)
             .send(`Internal Server Error: ${ex}`);
     }
-
 });
 
 //GET USER BY NAME and email
-
 router.get('/getByUserNameAndEmail/:name/:email', async(req, res) => {
     try {
         console.log(req.body);
@@ -90,11 +85,9 @@ router.get('/getByUserNameAndEmail/:name/:email', async(req, res) => {
             .status(500)
             .send(`Internal Server Error: ${ex}`);
     }
-
 });
 
 //FIND USER BY *JUST* ID
-
 router.get('/getByUserName/:name', async(req, res) => {
     try {
         console.log(req.body);
@@ -111,11 +104,10 @@ router.get('/getByUserName/:name', async(req, res) => {
 });
 
 //Find User BY ID
-
 router.get('/getByUserId/:userId', async(req, res) => {
     try {
         console.log(req.params.id);
-        const user = await User.findById({_id: req.params.userId});
+        const user = await User.findById({_id: req.params.user_Id});
         if (!user) 
             return res.send("user not found")
         return res.send(user);
@@ -127,9 +119,7 @@ router.get('/getByUserId/:userId', async(req, res) => {
 
 });
 
-
 //EDIT USER
-
 router.put('/:id', async(req, res) => {
     try {
         const {error} = validate(req.body);
@@ -153,19 +143,13 @@ router.put('/:id', async(req, res) => {
 });
 
 //DELETE USER BY ID
-
 router.delete("/:id", function (req, res, next) {
-
     User
         .findByIdAndRemove(req.params.id, req.body, function (err, post) {
             if (err) 
                 return next(err);
             res.json(post);
         });
-
 });
-
-//Login user
-
 
 module.exports = router;

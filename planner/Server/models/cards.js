@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const { CreateTask } = require('../../Client/src/components/CreateTask');
-// const mongoCard = require('./CreateTask');
 
 
 //full collection

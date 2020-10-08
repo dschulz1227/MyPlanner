@@ -1,11 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '@material-ui/core'
-import { Navbar, Nav , Row, Col} from 'react-bootstrap';
-import { BrowserRouter as Router } from 'react-router-dom'
-import { createBrowserHistory as createHistory } from "history";
+import { Nav , Row, Col} from 'react-bootstrap';
 
-// const history = createHistory();
 
 export default function myNavBar(props) {
     return (
