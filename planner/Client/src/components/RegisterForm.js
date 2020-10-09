@@ -35,9 +35,7 @@ export default class RegistrationForm extends Component {
             .post(`http://localhost:5000/api/users/`, {
             name: name,
             email: email,
-            password: password,
-            tasks: []
-
+            password: password
         })
             .then(response => {
                 alert('registered')

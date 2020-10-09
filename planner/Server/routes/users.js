@@ -128,7 +128,12 @@ router.put('/:id', async(req, res) => {
         const user = await User.findByIdAndUpdate(req.params.id, {
             name: req.body.name,
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            occupation: req.body.occupation,
+            age: req.body.age,
+            github: req.body.github,
+            bio: req.body.bio
+
         }, {new: true});
         if (!user) 
             return res.status(400).send(`The user with id "${req.params.id}" d

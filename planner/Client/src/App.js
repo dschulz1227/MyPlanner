@@ -110,7 +110,6 @@ function App() {
                     path='/profile'
                     render={props => <MyProfile {...props} user={user} component={MyProfile}/>}/>
                 <Route exact path='/cards' render={props => <Cards {...props} user={user}/>}/>
-
             </Router>
         </div>
     )

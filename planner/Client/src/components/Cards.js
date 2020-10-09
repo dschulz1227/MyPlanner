@@ -22,18 +22,15 @@ export default class Cards extends Component {
             selected: '',
             anchorEl: null
         }
-        this.handleChange = this
-            .handleChange
-            .bind(this);
-        this.renderOptions = this
-            .renderOptions
-            .bind(this);
-        this.handleClick = this
-            .handleClick
-            .bind(this);
-        this.handleClose = this
-            .handleClose
-            .bind(this);
+        // this.handleChange = this
+        //     .handleChange
+        //     .bind(this);
+        // this.handleClick = this
+        //     .handleClick
+        //     .bind(this);
+        // this.handleClose = this
+        //     .handleClose
+        //     .bind(this);
     }
 
     componentDidMount() {
@@ -78,7 +75,7 @@ export default class Cards extends Component {
     }
 
     //Set category to search by
-    handleChange(value) {
+    handleChange = (value) => {
         this.setState({category: value});
     }
 
