@@ -8,7 +8,8 @@ export default class RegistrationForm extends Component {
         this.state = {
             name: "",
             email: "",
-            password: ""
+            password: "",
+            
         }
 
         this.addUser = this
@@ -36,6 +37,7 @@ export default class RegistrationForm extends Component {
             name: name,
             email: email,
             password: password
+            
         })
             .then(response => {
                 alert('registered')

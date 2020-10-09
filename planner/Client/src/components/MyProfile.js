@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {Form, Button} from 'react-bootstrap'
+import EditProfile from './EditProfile';
 
 class MyProfile extends Component {
     constructor(props) {
@@ -12,64 +14,62 @@ class MyProfile extends Component {
             github: '',
             bio: ''
         }
+       
     }
 
     render() {
-
-        const updateProfile = () => {
-            axios.put('http://localhost:5000/api/user/${this.props.user._id}', {
-                "id": this.props.user._id,
-                "name": this.props.user.name,
-                "email": this.props.user.email,
-                "occupation": this.props.user.occupation,
-                "age": this.props.user.age,
-                "github": this.props.user.github,
-                "bio": this.props.user.bio
-            })
-        }
-
         return (
-            <div
-                className="profile"
-                style={{
-                display: "grid",
-                justifyContent: "center"
-            }}>
+            <div>
+                <button onClick={() => ('/EditProfile')} component={EditProfile} user={this.props.user}>
+                    this is whack
+                </button>
                 <div
+                    className="row"
                     style={{
-                    color: "yellowgreen",
-                    borderStyle: " solid",
-                    borderColor: "red",
-                    width: "500px",
-                    height: "100vh",
-                    justifyContent: "center",
-                    display: "grid",
-                    fontSize: "45px",
-                    marginTop: "50px",
-                    backgroundColor: "whitesmoke",
-                    opacity: ".5"
-                }}>Profile
-                    <div>
-                        <ul
-                            id="profileList"
-                            style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            listStyle: "none",
-                            justifyContent: "flex-start",
-                            fontSize: "20px",
-                            border: "1px solid black"
-                        }}>
-                            <li>Name: {this.props.user.name}</li>
-                            <li>Email:{this.props.user.email}</li>
-                            <li>Occupation:{this.props.user.email}</li>
-                            <li>Age: {this.props.user.age}</li>
-                            <li>Github: {this.props.user.github}</li>
-                            <li>Bio: {this.props.user.bio}</li>
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center"
+                    
+                }}>
+                    <div
+                        className="col-md-6 col-sm-6 col-lg-6"
+                        style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        color: "blue",
+                        backgroundColor: "white",
+                        position: "absolute",
+                        marginTop: "50px",
+                        overflow:"scroll",
+                        border: "6px antiquewhite solid",
+                        borderRadius:"10px",
+                        height:"60%",
+                        alignItems:"center"
+                        
+                    }}>
+
+                        <div className="row" style={{border:" 1px black dotted", padding:"30px"}}>Profile Image</div>
+                        <ul style={{listStyle:"none"}}>
+                            <div className="row"> <div className="col" style={{fontWeight:"bolder"}}>Name:</div>{this.props.user.name}</div>
+                            <div className="row"> <div className="col" style={{fontWeight:"bolder"}}>Email:</div>{this.props.user.email}</div>
+                            <div className="row"> <div className="col" style={{fontWeight:"bolder"}}>Occupation:</div>{this.props.user.occupation}</div>
+                            <div className="row"> <div className="col" style={{fontWeight:"bolder"}}>Age:</div>{this.props.user.age}</div>
+                            <div className="row"> <div className="col" style={{fontWeight:"bolder"}}>GitHub:</div>{this.props.user.github}</div>
+                            <div className="row"> <div className="col" style={{fontWeight:"bolder"}}>Bio:</div>{this.props.user.bio}</div>
                         </ul>
                     </div>
+                    <div
+                        className="col-6"
+                        style={{
+                        display: "flex",
+                        justifyContent: "flex-start",
+                        color: "red",
+                        maxWidth: "300px",
+                        textAlign: "left",
+                        flexDirection: "column"
+                    }}></div>
                 </div>
-            </div>
+                </div>
         )
     }
 }

@@ -157,4 +157,34 @@ router.delete("/:id", function (req, res, next) {
         });
 });
 
+//Add new user details
+router.post('/addUserDetails', async(req, res) => {
+    try {
+        const {error} = validateUser(req.body);
+
+        if (error) 
+            return res.status(400).send(error);
+        
+        let user = await User.findOne({email: req.body.email});
+        if (user) 
+            return res.status(400).send("Credentials Taken")
+
+        const salt = await bcrypt.genSalt(10);
+
+        user = new User({
+            occupation: req.body.occupation,
+            age: req.body.age,
+            github: req.body.github,
+            bio: req.body.bio
+        })
+
+        await user.save();
+        return res.send({_id: user._id, occupation: user.occupation, age: user.age, github: user.github, bio: user.bio});
+    } catch (ex) {
+        return res
+            .status(500)
+            .send(`Internal Server Error: ${ex}`)
+    }
+})
+
 module.exports = router;

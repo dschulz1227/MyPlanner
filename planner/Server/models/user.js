@@ -60,10 +60,10 @@ function validateUser(user) {
             .string()
             .required()
             .min(5),
-        occupation: Joi.string(),
-        age: Joi.number(),
-        github: Joi.string(),
-        bio: Joi.string(),
+        // occupation: Joi.string(),
+        // age: Joi.number(),
+        // github: Joi.string(),
+        // bio: Joi.string(),
         timeStamp: Joi.date()
     });
     return schema.validate(user);

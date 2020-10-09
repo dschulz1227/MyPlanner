@@ -66,10 +66,12 @@ class CreateTask extends Component {
                 <Card
                     style={{
                     width: "350px",
-                    margin: "0 auto"
+                    marginTop: "40px",
+                    marginLeft:"auto",
+                    marginRight:"auto"
                 }}>
-                    <CardTitle>
-                        Hello {this.state.activeUser}
+                    <CardTitle style={{display:"flex", justifyContent:"center"}}>
+                        Hello, {this.state.activeUser}!
                     </CardTitle>
                     <CardBody  style={{borderRadius:"15px"}}>
                         <Form>

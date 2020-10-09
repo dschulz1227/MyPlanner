@@ -2,15 +2,16 @@ import React, {useState} from 'react'
 import './App.css';
 import {Route, Router, useHistory} from "react-router-dom";
 import {useCookies} from 'react-cookie';
-//my Pages
-// import ProfilePage from './components/ProfilePage';
+//my Pages import ProfilePage from './components/ProfilePage';
 import HomePage from './components/HomePage';
 import CreateTask from './components/CreateTask';
 import Cards from './components/Cards';
 import MyProfile from './components/MyProfile'
+import EditProfile from './components/EditProfile'
 // import ProtectedRoute from './components/ProtectedRoutes';
 import {Button} from '@material-ui/core'
 import {Nav} from 'react-bootstrap'
+import { Header } from 'react-bootstrap/lib/Modal';
 const jwtDecode = require('jwt-decode');
 
 function App() {
@@ -71,6 +72,7 @@ function App() {
     return (
         <div className="App">
             <Nav
+                className="myNavLink"
                 user={user}
                 defaultactivekey="/"
                 style={{
@@ -93,6 +95,9 @@ function App() {
                 <Button color="primary" onClick={handleLogout}>Log Out</Button>
 
             </Nav>
+            <Header style={{height:"70px"}}>
+                <div style={{fontFamily:"sans-serif", fontSize:"35px", color:"white", marginBottom:"40px", paddingBottom:"0" }}>Tasky</div>
+            </Header>
 
             {user && <div>
                 {/** ADD THIS SO USER KNOWS THEY ARE LOGGED IN */}
@@ -110,6 +115,10 @@ function App() {
                     path='/profile'
                     render={props => <MyProfile {...props} user={user} component={MyProfile}/>}/>
                 <Route exact path='/cards' render={props => <Cards {...props} user={user}/>}/>
+                <Route
+                    exact
+                    path='/EditProfile'
+                    render={props => <EditProfile {...props} user={user} component={EditProfile}/>}/>
             </Router>
         </div>
     )

@@ -22,15 +22,6 @@ export default class Cards extends Component {
             selected: '',
             anchorEl: null
         }
-        // this.handleChange = this
-        //     .handleChange
-        //     .bind(this);
-        // this.handleClick = this
-        //     .handleClick
-        //     .bind(this);
-        // this.handleClose = this
-        //     .handleClose
-        //     .bind(this);
     }
 
     componentDidMount() {
@@ -87,10 +78,10 @@ export default class Cards extends Component {
     handleClose = () => {
         this.setState({anchorEl: null});
     }
+
     //Category options to be displayed
 
     render() {
-        console.log(this.state.cards)
         return (
             <div className="container-fluid">
                 <Button onClick={() => this.getCollection('All')} value={this.state.cards}>Display All</Button>
