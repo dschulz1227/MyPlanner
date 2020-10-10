@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
+import {useHistory} from 'react-router-dom'
 import axios from 'axios';
 import {Form, Button} from 'react-bootstrap'
 import EditProfile from './EditProfile';
+
 
 class MyProfile extends Component {
     constructor(props) {
@@ -16,11 +18,16 @@ class MyProfile extends Component {
         }
        
     }
+    
+    clickHandler = e =>{
+        this.props.history.push('/EditProfile')
+    }
+    
 
     render() {
         return (
             <div>
-                <button onClick={() => ('/EditProfile')} component={EditProfile} user={this.props.user}>
+                <button onClick={this.clickHandler} component={this.EditProfile} user={this.props.user}>
                     this is whack
                 </button>
                 <div
@@ -47,9 +54,9 @@ class MyProfile extends Component {
                         alignItems:"center"
                         
                     }}>
+                        <div className="row" style={{border:" 1px black dotted", padding:"100px"}}>Profile Image</div>
 
-                        <div className="row" style={{border:" 1px black dotted", padding:"30px"}}>Profile Image</div>
-                        <ul style={{listStyle:"none"}}>
+                        <ul style={{listStyle:"none", marginLeft:"100px"}}>
                             <div className="row"> <div className="col" style={{fontWeight:"bolder"}}>Name:</div>{this.props.user.name}</div>
                             <div className="row"> <div className="col" style={{fontWeight:"bolder"}}>Email:</div>{this.props.user.email}</div>
                             <div className="row"> <div className="col" style={{fontWeight:"bolder"}}>Occupation:</div>{this.props.user.occupation}</div>

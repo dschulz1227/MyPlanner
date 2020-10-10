@@ -158,14 +158,14 @@ router.delete("/:id", function (req, res, next) {
 });
 
 //Add new user details
-router.post('/addUserDetails', async(req, res) => {
+router.post('/addUserDetails/:id', async(req, res) => {
     try {
         const {error} = validateUser(req.body);
 
         if (error) 
             return res.status(400).send(error);
         
-        let user = await User.findOne({email: req.body.email});
+        let user = await User.findOne({_id: req.params.id});
         if (user) 
             return res.status(400).send("Credentials Taken")
 

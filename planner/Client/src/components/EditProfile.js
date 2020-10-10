@@ -16,7 +16,8 @@ export class EditProfile extends Component {
         event.preventDefault();
         const {occupation, age, github, bio} = this.state
         axios
-            .post(`http://localhost:5000/api/users/addUserDetails/${this.props.user._id}`, {
+            .post(`http://localhost:5000/api/users/addUserDetails/${this.props.user._id}`, 
+            {
             occupation: occupation,
             age: age,
             github: github,
