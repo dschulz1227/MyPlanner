@@ -70,7 +70,8 @@ class CreateTask extends Component {
                     width: "350px",
                     marginTop: "40px",
                     marginLeft:"auto",
-                    marginRight:"auto"
+                    marginRight:"auto",
+                    fontFamily:"lato"
                 }}>
                     <CardTitle style={{display:"flex", justifyContent:"center"}}>
                         Hello, {this.state.activeUser}!

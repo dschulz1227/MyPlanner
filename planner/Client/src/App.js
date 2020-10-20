@@ -78,15 +78,16 @@ function App() {
                 style={{
                 justifyContent: "space-evenly",
                 height: "50px",
-                background: "aliceBlue",
+                background: "white",
                 alignItems: "center",
-                opacity: '.5',
+                opacity: '.8',
                 marginLeft: "15px",
                 marginRight: "15px",
                 borderRadius: "10px",
                 fontFamily: "lato",
                 fontSize: "larger",
-                fontWeight: "100"
+                fontWeight: "100",
+                color: "black"
             }}>
 
                 <a className="myNavLink" onClick={() => history.push('/CreateTask')}>Home</a>

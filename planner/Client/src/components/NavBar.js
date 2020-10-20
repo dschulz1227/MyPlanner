@@ -4,7 +4,7 @@ import {Nav, Row, Col} from 'react-bootstrap';
 
 export default function myNavBar(props) {
     return (
-        <Nav className="myBodyFont"
+        <Nav
             style={{
             display: "flex",
             justifyContent: "center"

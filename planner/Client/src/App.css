@@ -9,13 +9,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     min-height: calc(100vh - 0px) !important;
-
-
-
 }
-/* .container-fluid{
-    min-height: calc(100vh - 0px) !important;
-} */
 
 html body {
     display: grid;
@@ -91,12 +85,6 @@ html body {
 }
 
 
-/* ul {
-    list-style: none;
-    flex-direction: row;
-    display: flex;
-} */
-
 @media all and (min-width: 480px) {
     .Login {
         padding: 60px 0;
@@ -129,8 +117,9 @@ html body {
 }
 
 input{
-    border-radius:12px;
-    border-width: 1px ;
+    padding-left: 10px;
+    border-radius:10px;
+    border-width: 1px;
 }
 
 .profileEditor{
@@ -144,29 +133,33 @@ input{
 .homeForms{
     background-color: white;
     padding: 25px;
-    border: 1px black;
+    border-style: solid;
     border-radius: 10px;
+    border-width: 1px;
     padding:15px; 
     margin-right: 0px
 }
 
-/* .myButton{
-    background-color: antiquewhite;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: small;
-    border-radius: 10px;
-    padding:10px;
-    
-} */
-
-
 
 .myNavLink :hover{
     font-size: large;
-    font-weight: bolder
+    font-weight: bolder;
+    color:black
 }
 
 .myBodyFont{
     font-family: 'Lato', sans-serif !important;
     font-size: 14px;
+}
+
+card :hover{
+    --translate-y: -2px;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, .5);
+}
+
+
+#loginTitle{
+    width:fit-content;
+    margin-bottom:15px;
+    margin-left:65px;
 }

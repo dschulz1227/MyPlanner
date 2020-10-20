@@ -2,7 +2,6 @@ import React from 'react';
 import Axios from 'axios';
 import Button from '@material-ui/core/Button';
 
-
 class LoginForm extends React.Component {
     constructor(props) {
         super(props);
@@ -44,54 +43,41 @@ class LoginForm extends React.Component {
     }
     render() {
         return (
-            <div
-              >
-                <div
-                    className="input"
-                    style={{
-                    display: "grid",
-                    justifyContent: "center"
-                }}>
-                    <form className="input" onSubmit={this.handleSubmit}>
-                        <div>
-                            <h5>Log In</h5>
-                        </div>
-                        <div
-                            style={{
-                            marginTop: "3px"
-                        }}>
-                            <input
-                                type="text"
-                                name="email"
-                                placeholder="Email"
-                                value={this.state.email}
-                                onChange={this.handleChange}
-                                required/>
-                        </div>
-                        <div
-                            style={{
-                            marginTop: "3px",
-                            marginBottom: "3px"
-                        }}>
-                            <input
-                                type="password"
-                                name="password"
-                                placeholder="Password"
-                                value={this.state.password}
-                                onChange={this.handleChange}
-                                required/>
-                        </div>
-                        <div>
-                            <div>
-                                <span>
-                                    <Button variant="outlined"
-                                color="primary" className="submit" type="submit">Enter</Button>
-                                </span>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+           
+                <card className="input" onSubmit={this.handleSubmit}>
+                    <div id="loginTitle">
+                        <strong>Log In</strong>
+                    </div>
+                        <input
+                            type="text"
+                            name="email"
+                            placeholder="Email"
+                            value={this.state.email}
+                            onChange={this.handleChange}
+                            required/>
+                    <div
+                        style={{
+                        marginTop: "15px",
+                        display:"grid",
+                        justifyContent:"center"
+                    }}>
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            value={this.state.password}
+                            onChange={this.handleChange}
+                            required/>
+                    </div>
+                    
+                        
+                           
+                                <Button variant="outlined" color="primary" className="submit" type="submit" style={{display:"grid", justifyContent:"center", width:"50%", marginTop:"10px", marginLeft:"40px"}}>Enter</Button>
+                            
+                        
+                    
+                </card>
+          
         )
     }
 }
