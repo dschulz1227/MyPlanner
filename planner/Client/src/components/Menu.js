@@ -18,7 +18,7 @@ export default function MyMenu(props) {
     };
     return (             
         <div>
-            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+            <Button variant="outlined" color="primary" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                 List by Category
             </Button>
             <Menu

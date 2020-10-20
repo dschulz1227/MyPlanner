@@ -84,9 +84,10 @@ export default class Cards extends Component {
     render() {
         return (
             <div className="container-fluid">
-                <Button onClick={() => this.getCollection('All')} value={this.state.cards}>Display All</Button>
+                <div className="row" style={{display:"flex", justifyContent:"center", marginBottom:"15px"}}>
+                <Button variant="outlined" color="primary" onClick={() => this.getCollection('All')} value={this.state.cards}>Display All</Button>
                 <MyMenu getCollection={this.getCollection}/>
-
+                </div>
                 <div
                     className="row"
                     style={{

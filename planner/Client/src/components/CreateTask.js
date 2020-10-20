@@ -10,6 +10,8 @@ import {
     Form,
     CardTitle
 } from 'reactstrap';
+import Button from '@material-ui/core/Button';
+
 class CreateTask extends Component {
     constructor(props) {
         super(props)
@@ -115,8 +117,10 @@ class CreateTask extends Component {
                                 onChange={this.handleChange}
                                 placeholder="Date to complete"/>
                             <br/>
-                            <button onClick={this.handleSubmit} type="button">Add Task
-                            </button>
+                            <div style={{justifyContent:"center" , display:"flex"}}>
+                            <Button variant="contained" onClick={this.handleSubmit} type="button">Add Task
+                            </Button>
+                            </div>
                         </Form>
                     </CardBody>
                 </Card>

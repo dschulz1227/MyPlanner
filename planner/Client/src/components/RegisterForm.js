@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import Axios from 'axios';
+import Button from '@material-ui/core/Button';
+
 
 export default class RegistrationForm extends Component {
     constructor(props) {
@@ -101,7 +103,7 @@ export default class RegistrationForm extends Component {
                     }}>
 
                         <span>
-                            <button onClick={this.addUser} className="submit" type="submit">Create</button>
+                            <Button variant="outlined" color="primary" onClick={this.addUser} className="submit" type="submit">Create</Button>
                         </span>
 
                     </div>

@@ -100,6 +100,8 @@ class MyProfile extends Component {
 
                     <div className="row">
                             <Button
+                                variant="outlined"
+                                color="primary"
                                 onClick={this.clickHandler}
                                 component={this.EditProfile}
                                 user={this.props.user}>

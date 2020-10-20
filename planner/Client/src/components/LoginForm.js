@@ -1,5 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
+import Button from '@material-ui/core/Button';
 
 
 class LoginForm extends React.Component {
@@ -82,7 +83,8 @@ class LoginForm extends React.Component {
                         <div>
                             <div>
                                 <span>
-                                    <button className="submit" type="submit">Enter</button>
+                                    <Button variant="outlined"
+                                color="primary" className="submit" type="submit">Enter</Button>
                                 </span>
                             </div>
                         </div>
