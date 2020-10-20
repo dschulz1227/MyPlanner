@@ -1,5 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
+
+
 class LoginForm extends React.Component {
     constructor(props) {
         super(props);
@@ -41,10 +43,7 @@ class LoginForm extends React.Component {
     render() {
         return (
             <div
-                className="loginWrap"
-                style={{
-                color: "orange"
-            }}>
+              >
                 <div
                     className="input"
                     style={{

@@ -4,18 +4,31 @@ import LoginForm from './LoginForm'
 
 const HomePage = props => {
 
-const handleSuccessfulAuth = e => {
-  e.preventDefault();
-}
+    const handleSuccessfulAuth = e => {
+        e.preventDefault();
+    }
 
-  return (
-    <div>
-      <div className="row" style={{display:"flex" , justifyContent:"space-evenly" , marginTop:"65px"}}>
-        <LoginForm className="col-6" id="LoginForm" style={{color:"purple"}}  setCookieApp={props.setCookieApp} handleLogin={props.handleLogin}/>
-        <RegistrationForm className="col-6" id="RegistrationForm" handleSuccessfulAuth={handleSuccessfulAuth}/>
-      </div>
-    </div>
-  )
+    return (
+        <div>
+            <div
+                className="row"
+                style={{
+                display: "flex",
+                justifyContent: "space-evenly",
+                marginTop: "65px"
+            }}>
+                <div className="homeForms">
+                    <LoginForm
+                        className="col-6 homeForms"
+                        setCookieApp={props.setCookieApp}
+                        handleLogin={props.handleLogin}/></div>
+                <div className="homeForms">
+                    <RegistrationForm
+                        className="col-6 homeForms"
+                        handleSuccessfulAuth={handleSuccessfulAuth}/></div>
+            </div>
+        </div>
+    )
 };
 
 export default HomePage;
