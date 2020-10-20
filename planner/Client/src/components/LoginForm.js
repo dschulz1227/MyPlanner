@@ -38,6 +38,7 @@ class LoginForm extends React.Component {
                 window.location.href = 'http://localhost:3000/CreateTask';
             })
             .catch(error => {
+                alert("Unable to find this user!")
                 console.log("Oops! something went wrong, check your credentials and try again.", error);
             });
     }

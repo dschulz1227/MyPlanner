@@ -76,15 +76,15 @@ class CreateTask extends Component {
                         Hello, {this.state.activeUser}!
                     </CardTitle>
                     <CardBody  style={{borderRadius:"15px"}}>
-                        <Form>
-                            <Label>Title</Label>
+                        <Form style={{margin:"10px"}}>
+                            <Label style={{fontWeight:"bolder"}}>Title</Label>
                             <Input 
                                 type="text"
                                 name="title"
                                 value={this.state.title}
                                 onChange={this.handleChange}
                                 placeholder="Task Title"/>
-                            <Label>Category</Label>
+                            <Label style={{fontWeight:"bolder"}}>Category</Label>
                             <Input
                                 type="select"
                                 value={this.state.category}

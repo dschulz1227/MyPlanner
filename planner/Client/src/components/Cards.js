@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Card, CardTitle, Row, Col} from 'reactstrap';
-import Moment from 'react-moment';
 import MyMenu from './Menu'
 
 //css component imports
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
-import MenuItem from '@material-ui/core/MenuItem';
+import CreateOutlinedIcon from '@material-ui/icons/CreateOutlined';
 
 ////////////
 
@@ -84,9 +83,25 @@ export default class Cards extends Component {
     render() {
         return (
             <div className="container-fluid">
-                <div className="row" style={{display:"flex", justifyContent:"center", marginBottom:"15px"}}>
-                <Button variant="outlined" color="primary" onClick={() => this.getCollection('All')} value={this.state.cards}>Display All</Button>
-                <MyMenu getCollection={this.getCollection}/>
+                <div
+                    className="row"
+                    style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginBottom: "45px",
+                    marginLeft: "15px",
+                    marginRight: "15px"
+                }}>
+                    <Button
+                        variant="outlined"
+                        color="primary"
+                        style={{
+                        marginLeft: "15px",
+                        marginRight: "15px"
+                    }}
+                        onClick={() => this.getCollection('All')}
+                        value={this.state.cards}>Display All</Button>
+                    <MyMenu getCollection={this.getCollection}/>
                 </div>
                 <div
                     className="row"
@@ -102,54 +117,85 @@ export default class Cards extends Component {
                                     className="col-md-4 col-lg-3 col-sm-12 mr-auto"
                                     key={index}
                                     style={{
-                                    alignItems: "center"
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    display: "grid",
+                                    fontWeight: "lighter",
+                                    padding:"20px"
                                 }}>
                                     <Card
                                         style={{
                                         marginBottom: "5px",
-                                        padding: "5px"
+                                        padding: "10px",
+                                        display:"grid",
+                                        justifyContent:"center"
                                     }}>
                                         <CardTitle
                                             style={{
-                                            color: "red",
-                                            fontSize: "25px",
+                                            color: "black",
+                                            fontWeight: "bold",
+                                            fontSize: "20px",
                                             justifyContent: "center",
                                             display: "flex"
                                         }}>
                                             {task.title}
                                         </CardTitle>
 
-                                        <div>
-                                            <h6>
-                                                Category:
-                                            </h6>
-                                            <span>
-                                                {task.category}
-                                            </span>
-                                            <h6>
-                                                Task:
-                                            </h6>
-                                            <span>
-                                                {task.content}
-                                            </span>
-                                            <h6>
-                                                Date:
-                                            </h6>
-                                            <span>
-                                                <Moment date={task.dateAdded}/>
-                                            </span>
-                                            <h6>
-                                                Complete By:
-                                            </h6>
-                                            <span>
-                                                <Moment date={task.completionDate}/>
-                                            </span>
+                                        <div
+                                            style={{
+                                            display: "grid",
+                                            justifyContent: "center"
+                                        }}>
+                                            <div>
+                                                <strong>
+                                                    Category:
+                                                </strong>
+                                            </div>
+                                            <div>
+                                                <span>
+                                                    {task.category}
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <strong>
+                                                    Task:
+                                                </strong>
+                                            </div>
+                                            <div>
+                                                <span>
+                                                    {task.content}
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <strong>
+                                                    Date:
+                                                </strong>
+                                            </div>
+                                            <div>
+                                                <span>
+                                                    <div>
+                                                        {task
+                                                            .dateAdded
+                                                            .toString()}</div>
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <strong>
+                                                    Complete By:
+                                                </strong>
+                                                <span>
+                                                    <div>{task
+                                                            .completionDate
+                                                            .toString()}</div>
+                                                </span>
+                                            </div>
                                             <Row>
                                                 <Col>
                                                     <Button
+                                                        size="small"
                                                         variant="contained"
                                                         color="primary"
-                                                        sendicon={< sendIcon />}
+                                                        startIcon={< CreateOutlinedIcon />}
                                                         value={this.state.isCompleted}
                                                         onClick={this.markAsComplete}>
                                                         Completed
@@ -157,11 +203,22 @@ export default class Cards extends Component {
                                                 </Col>
                                                 <Col>
                                                     <Button
+                                                        size="small"
                                                         variant="contained"
                                                         color="secondary"
                                                         startIcon={< DeleteIcon />}
                                                         onClick={() => this.deleteTask(task._id)}>
                                                         Delete
+                                                    </Button>
+                                                </Col>
+                                                <Col
+                                                    style={{
+                                                    display: "grid",
+                                                    justifyContent: "center",
+                                                    marginTop: "5px"
+                                                }}>
+                                                    <Button color="primary">
+                                                        Edit Task
                                                     </Button>
                                                 </Col>
                                             </Row>

@@ -83,10 +83,10 @@ function App() {
                 opacity: '.5',
                 marginLeft: "15px",
                 marginRight: "15px",
-                borderRadius: "7.5px",
-                fontFamily: "monospace",
+                borderRadius: "10px",
+                fontFamily: "lato",
                 fontSize: "larger",
-                fontWeight: "bold"
+                fontWeight: "100"
             }}>
 
                 <a className="myNavLink" onClick={() => history.push('/CreateTask')}>Home</a>
@@ -96,7 +96,7 @@ function App() {
 
             </Nav>
             <Header style={{height:"70px"}}>
-                <div style={{fontFamily:"sans-serif", fontSize:"35px", color:"white", marginBottom:"40px", paddingBottom:"0" }}>Tasky</div>
+                <div style={{fontFamily:"Lato", fontWeight:"bolder", fontSize:"50px", color:"white", marginBottom:"40px",marginLeft:"30px" ,marginTop:"-15px", paddingBottom:"0"}}>Tasky</div>
             </Header>
 
             {user && <div>

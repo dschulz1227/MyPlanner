@@ -46,8 +46,8 @@ class MyProfile extends Component {
                         position: "absolute",
                         marginTop: "50px",
                         overflow: "scroll",
-                        border: "6px antiquewhite solid",
-                        borderRadius: "10px",
+                        border: "2px antiquewhite solid",
+                        borderRadius: "15px",
                         height: "60%",
                         alignItems: "center"
                     }}>

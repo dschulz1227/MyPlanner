@@ -9,13 +9,14 @@ const HomePage = props => {
     }
 
     return (
-        <div>
+        <div className="bodyFont">
             <div
                 className="row"
                 style={{
                 display: "flex",
                 justifyContent: "space-evenly",
                 marginTop: "65px"
+                
             }}>
                 <div className="homeForms">
                     <LoginForm

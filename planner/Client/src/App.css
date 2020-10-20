@@ -10,6 +10,8 @@
     background-size: cover;
     min-height: calc(100vh - 0px) !important;
 
+
+
 }
 /* .container-fluid{
     min-height: calc(100vh - 0px) !important;
@@ -118,7 +120,7 @@ html body {
 
 
 .myNavLink :hover{
-    cursor: crosshair;
+    cursor: pointer;
     text-shadow: 1ch;
 }
 
@@ -157,8 +159,14 @@ input{
     
 } */
 
-Button :hover {
-    border-color: red !important ;
-    border: 10px black;
+
+
+.myNavLink :hover{
+    font-size: large;
+    font-weight: bolder
 }
 
+.myBodyFont{
+    font-family: 'Lato', sans-serif !important;
+    font-size: 14px;
+}
