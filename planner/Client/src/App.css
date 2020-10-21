@@ -141,10 +141,11 @@ input{
 }
 
 
-.myNavLink :hover{
+#myNavStyle :hover{
     font-size: large;
     font-weight: bolder;
-    color:black
+    color:black;
+    cursor: pointer;
 }
 
 .myBodyFont{
@@ -162,4 +163,27 @@ card :hover{
     width:fit-content;
     margin-bottom:15px;
     margin-left:65px;
+}
+
+#loginButtons{
+    display:"grid";
+    justify-content:"center";
+    width:"50%";
+    margin-top:10px;
+    margin-left:45px
+}
+
+#myNavStyle{
+    justify-content: space-evenly;
+    height: 50px;
+    background-color: white;
+    align-items: center;
+    opacity: .8;
+    margin-left: 15px;
+    margin-right: 15px;
+    border-radius: 10px;
+    font-family: lato;
+    font-size: larger;
+    font-weight: 100;
+    color: black
 }

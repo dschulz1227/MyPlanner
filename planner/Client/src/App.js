@@ -72,23 +72,10 @@ function App() {
     return (
         <div className="App">
             <Nav
-                className="myNavLink"
+                id="myNavStyle"
                 user={user}
                 defaultactivekey="/"
-                style={{
-                justifyContent: "space-evenly",
-                height: "50px",
-                background: "white",
-                alignItems: "center",
-                opacity: '.8',
-                marginLeft: "15px",
-                marginRight: "15px",
-                borderRadius: "10px",
-                fontFamily: "lato",
-                fontSize: "larger",
-                fontWeight: "100",
-                color: "black"
-            }}>
+                >
 
                 <a className="myNavLink" onClick={() => history.push('/CreateTask')}>Home</a>
                 <a className="myNavLink" onClick={() => history.push('Profile')}>Profile</a>
@@ -100,11 +87,7 @@ function App() {
                 <div style={{fontFamily:"Lato", fontWeight:"bolder", fontSize:"50px", color:"white", marginBottom:"40px",marginLeft:"30px" ,marginTop:"-15px", paddingBottom:"0"}}>Tasky</div>
             </Header>
 
-            {user && <div>
-                {/** ADD THIS SO USER KNOWS THEY ARE LOGGED IN */}
-                {/* {user ? <h3 style={{ color: "white" }}>hello, {user.name}</h3> : <p style={{ color: "white" }}>Please login to use planner</p>} */}
-            </div>
-}
+
             <Router history={history}>
                 <Route exact path='/' component={HomePage}/>
                 <Route

@@ -7,7 +7,8 @@ const taskSchema = new mongoose.Schema({
         category:  {type: String},
         content: {type: String, required: true, minlength: 5, maxlength: 300},
         dateAdded: {type: String, required: true },
-        completionDate: {type: String, default: null}
+        completionDate: {type: String, default: null},
+        completedDate: {type:Date, default: null}
     }
 );
 

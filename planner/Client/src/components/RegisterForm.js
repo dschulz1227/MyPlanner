@@ -58,8 +58,8 @@ export default class RegistrationForm extends Component {
         return (
             <div className="registerWrap">
                 <form >
-                    <div>
-                        <h5>New User</h5>
+                    <div id="loginTitle" style={{marginLeft:"55px"}}>
+                        <strong>New User</strong>
                     </div>
 
                     <div style={{
@@ -103,7 +103,7 @@ export default class RegistrationForm extends Component {
                     }}>
 
                         <span>
-                            <Button variant="outlined" color="primary" onClick={this.addUser} className="submit" type="submit">Create</Button>
+                            <Button id="loginButtons" variant="outlined" color="primary" onClick={this.addUser} className="submit" type="submit">Create</Button>
                         </span>
 
                     </div>

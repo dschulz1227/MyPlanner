@@ -19,7 +19,9 @@ export default class Cards extends Component {
             isCompleted: false,
             category: '',
             selected: '',
-            anchorEl: null
+            anchorEl: null,
+            completedTasks: [], 
+            completedDate: null
         }
     }
 
@@ -30,8 +32,6 @@ export default class Cards extends Component {
 
     //get entire collection
     getCollection = (name) => {
-        console.log('yeay it works', name)
-
         axios
             .get(`http://localhost:5000/api/tasks/getTasks/${this.props.user._id}/category/${name}`)
             .then(res => {
@@ -39,17 +39,6 @@ export default class Cards extends Component {
                 console.log('card details', res)
                 this.setState({cards: res.data})
             })
-    }
-
-    goToCarddetails = (userId, collectionCount) => {
-        if (!collectionCount) {
-            alert('No collections');
-            return;
-        }
-        this
-            .props
-            .history
-            .push('/Task', {userId: userId})
     }
 
     deleteTask(taskId) {
@@ -60,9 +49,21 @@ export default class Cards extends Component {
             .delete(`http://localhost:5000/api/tasks/delete/${this.props.user._id}/${taskId}`)
             .then(res => {
                 const thisTask = (res.taskId)
-                alert(thisTask + 'Task deleteed') //The deleted taskId is coming back as undefined
+                alert('Task deleted')
             })
     }
+
+    //task complete
+    markTaskComplete = (taskId) => {
+        console.log(taskId, 'Are we getting the id?')
+        console.log(this.props.userId, 'this is the userid')
+        console.log(this.props, 'props data')
+        console.log(this.props.user._id, 'userId')
+        this.setState({isCompleted: true})
+        // alert('You have completed this task!')
+            console.log(this.state.cards)
+        }
+    
 
     //Set category to search by
     handleChange = (value) => {
@@ -78,7 +79,31 @@ export default class Cards extends Component {
         this.setState({anchorEl: null});
     }
 
-    //Category options to be displayed
+
+    completeTask = (task) => {
+        console.log(task)
+        task.completedDate = new Date();
+        axios
+            .put(`http://localhost:5000/api/tasks/update/${task._id}`, task)
+            .then(res => {
+
+                this.getCollection('All')
+                return;
+                //Update specific object in cards array by task id
+                
+                //get copy of cards
+                let newArrayOfCards = [...this.state.cards];
+
+                //update task by id
+                for(let i = 0; newArrayOfCards.length; i++){
+                    if(newArrayOfCards[i]._id === task._id){
+                        newArrayOfCards[i].completedDate = new Date();
+                        break;
+                    }
+                }
+                
+            })
+    }
 
     render() {
         return (
@@ -114,21 +139,21 @@ export default class Cards extends Component {
                         .map((task, index) => {
                             return (
                                 <div
-                                    className="col-md-4 col-lg-3 col-sm-12 mr-auto"
+                                    className="col-md-4 col-lg-2 col-sm-12 mr-auto"
                                     key={index}
                                     style={{
                                     alignItems: "center",
                                     justifyContent: "center",
                                     display: "grid",
                                     fontWeight: "lighter",
-                                    padding:"20px"
+                                    padding: "20px"
                                 }}>
                                     <Card
                                         style={{
                                         marginBottom: "5px",
                                         padding: "10px",
-                                        display:"grid",
-                                        justifyContent:"center"
+                                        display: "grid",
+                                        justifyContent: "center"
                                     }}>
                                         <CardTitle
                                             style={{
@@ -189,18 +214,35 @@ export default class Cards extends Component {
                                                             .toString()}</div>
                                                 </span>
                                             </div>
+
+                                            { task.completedDate && 
+                                                <div>
+                                                    <strong>
+                                                        Complete Date:
+                                                    </strong>
+                                                    <span>
+                                                        <div>{task.completedDate}</div>
+                                                    </span>
+                                                </div>
+                                            }
                                             <Row>
+
+
                                                 <Col>
                                                     <Button
                                                         size="small"
                                                         variant="contained"
                                                         color="primary"
-                                                        startIcon={< CreateOutlinedIcon />}
+                                                        startIcon={<CreateOutlinedIcon/>}
                                                         value={this.state.isCompleted}
-                                                        onClick={this.markAsComplete}>
+                                                        onClick={() => this.completeTask(task)} 
+                                                        disabled={task.completedDate}>
                                                         Completed
+                            
                                                     </Button>
                                                 </Col>
+
+
                                                 <Col>
                                                     <Button
                                                         size="small"
@@ -211,15 +253,23 @@ export default class Cards extends Component {
                                                         Delete
                                                     </Button>
                                                 </Col>
+                                            </Row>
+
+                                            <Row>
                                                 <Col
                                                     style={{
                                                     display: "grid",
                                                     justifyContent: "center",
                                                     marginTop: "5px"
                                                 }}>
+
+                                                    //Create Edit Task functionality
                                                     <Button color="primary">
                                                         Edit Task
                                                     </Button>
+
+                                                    {/* <input id="todo-0" type="checkbox" defaultChecked={false} isCompleted={false} /> */}
+
                                                 </Col>
                                             </Row>
                                         </div>

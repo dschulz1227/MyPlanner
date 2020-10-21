@@ -72,7 +72,7 @@ class LoginForm extends React.Component {
                     
                         
                            
-                                <Button variant="outlined" color="primary" className="submit" type="submit" style={{display:"grid", justifyContent:"center", width:"50%", marginTop:"10px", marginLeft:"40px"}}>Enter</Button>
+                                <Button id="loginButtons" variant="outlined" color="primary" className="submit" onClick={this.handleSubmit} type="submit">Enter</Button>
                             
                         
                     

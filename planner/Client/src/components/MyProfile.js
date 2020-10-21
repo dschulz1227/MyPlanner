@@ -10,15 +10,27 @@ class MyProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
-            email: '',
-            occupation: '',
-            age: '',
-            github: '',
-            bio: ''
+            data:{}
         }
-
+        console.log(props)
     }
+
+    componentDidMount() {
+        console.log(this.state.cards)
+        this.getCollection('All')
+    }
+
+    //get entire collection
+    getCollection = (name) => {
+        axios
+            .get(`http://localhost:5000/api/users/getByUserId/${this.props.user._id}`)
+            .then(res => {
+                // console.log('you will see me', res.data)
+                console.log('card details', res.data)
+                this.setState({data: res.data})
+            })
+    }
+
 
     clickHandler = e => {
         this
@@ -68,32 +80,32 @@ class MyProfile extends Component {
                                 <strong
                                     style={{
                                     marginRight: "10px"
-                                }}>Name:</strong><div style={{fontWeight:"lighter"}}>{this.props.user.name}</div></div>
+                                }}>Name:</strong><div style={{fontWeight:"lighter"}}>{this.state.data.name}</div></div>
                             <div className="row">
                                 <strong
                                     style={{
                                     marginRight: "10px"
-                                }}>Email:</strong><div style={{fontWeight:"lighter"}}>{this.props.user.email}</div></div>
+                                }}>Email:</strong><div style={{fontWeight:"lighter"}}>{this.state.data.email}</div></div>
                             <div className="row">
                                 <strong
                                     style={{
                                     marginRight: "10px"
-                                }}>Occupation:</strong><div style={{fontWeight:"lighter"}}>{this.props.user.occupation}</div></div>
+                                }}>Occupation:</strong><div style={{fontWeight:"lighter"}}>{this.state.data.occupation}</div></div>
                             <div className="row">
                                 <strong
                                     style={{
                                     marginRight: "10px"
-                                }}>Age:</strong><div style={{fontWeight:"lighter"}}>{this.props.user.age}</div></div>
+                                }}>Age:</strong><div style={{fontWeight:"lighter"}}>{this.state.data.age}</div></div>
                             <div className="row">
                                 <strong
                                     style={{
                                     marginRight: "10px"
-                                }}>GitHub:</strong><div style={{fontWeight:"lighter"}}>{this.props.user.github}</div></div>
+                                }}>GitHub:</strong><div style={{fontWeight:"lighter"}}>{this.state.data.github}</div></div>
                             <div className="row">
                                 <strong
                                     style={{
                                     marginRight: "10px"
-                                }}>Bio:</strong> <div style={{fontWeight:"lighter"}}>{this.props.user.bio}</div></div>
+                                }}>Bio:</strong> <div style={{fontWeight:"lighter"}}>{this.state.data.bio}</div></div>
                         </ul>
  
                     </div>

@@ -114,4 +114,5 @@ router.get('/getByUserId/:userId', async(req, res) => {
             .send(`Internal Server Error: ${ex}`);
     }
 });
+
 module.exports = router;

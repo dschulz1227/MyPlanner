@@ -1,5 +1,10 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import Button from '@material-ui/core/Button';
+
+
+
+
 
 export class EditProfile extends Component {
     constructor(props) {
@@ -14,14 +19,15 @@ export class EditProfile extends Component {
 
     addUserDetails = event => {
         event.preventDefault();
-        const {occupation, age, github, bio} = this.state
+        const {occupation, age, github, bio, name, email} = this.state
         axios
-            .post(`http://localhost:5000/api/users/addUserDetails/${this.props.user._id}`, 
-            {
+            .put(`http://localhost:5000/api/users/${this.props.user._id}`, {
+            name: name,
             occupation: occupation,
             age: age,
             github: github,
-            bio: bio
+            bio: bio,
+            email: email            
         })
             .then(response => {
                 alert('Profile Updated!')
@@ -43,15 +49,53 @@ export class EditProfile extends Component {
 
     render() {
         return (
-            <div>               
+            <div style={{display:"grid", justifyContent:"center", marginTop:"75px"}}>
                 <form>
+                    <div style={{
+                        marginTop: "3px"
+                    }}>
+                         <div style={{
+                        marginTop: "3px"
+                    }}>
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder={this.props.user.name}
+                                value={this.state.name}
+                                onChange={this.handleChange}
+                                required/>
+                        </div>
+
+                        <div style={{
+                        marginTop: "3px"
+                    }}>
+                            <input
+                                type="text"
+                                name="email"
+                                placeholder={this.props.user.email}
+                                value={this.state.email}
+                                onChange={this.handleChange}
+                                required/>
+                        </div>
+
+                        <div style={{
+                        marginTop: "3px"
+                    }}>
+                            <input
+                                type="text"
+                                name="password"
+                                placeholder="Change password"
+                                value={this.state.password}
+                                onChange={this.handleChange}
+                                required/>
+                        </div>
                     <div style={{
                         marginTop: "3px"
                     }}>
                         <input
                             type="text"
                             name="occupation"
-                            placeholder="What is your job?"
+                            placeholder="what is your job?"
                             value={this.state.occupation}
                             onChange={this.handleChange}
                             required/>
@@ -68,6 +112,7 @@ export class EditProfile extends Component {
                             onChange={this.handleChange}
                             required/>
                     </div>
+
                     <div style={{
                         marginTop: "3px"
                     }}>
@@ -79,6 +124,7 @@ export class EditProfile extends Component {
                             onChange={this.handleChange}
                             required/>
                     </div>
+
                     <div style={{
                         marginTop: "3px"
                     }}>
@@ -90,11 +136,13 @@ export class EditProfile extends Component {
                             onChange={this.handleChange}
                             required/>
                     </div>
-                    <span>
-                        <button onClick={this.addUserDetails} className="submit" type="submit">Update Profile</button>
+                    </div>
+                    <span style={{display:"grid", justifyContent:"center", marginTop:"10px"}}>
+                        <Button variant="outlined" color="primary" onClick={this.addUserDetails} className="submit" type="submit">Update Profile</Button>
                     </span>
                 </form>
             </div>
+       
         )
     }
 

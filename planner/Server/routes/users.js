@@ -107,7 +107,7 @@ router.get('/getByUserName/:name', async(req, res) => {
 router.get('/getByUserId/:userId', async(req, res) => {
     try {
         console.log(req.params.id);
-        const user = await User.findById({_id: req.params.user_Id});
+        const user = await User.findById({_id: req.params.userId});
         if (!user) 
             return res.send("user not found")
         return res.send(user);
@@ -122,23 +122,16 @@ router.get('/getByUserId/:userId', async(req, res) => {
 //EDIT USER
 router.put('/:id', async(req, res) => {
     try {
-        const {error} = validate(req.body);
-        if (error) 
-            return res.status(400).send(error);
         const user = await User.findByIdAndUpdate(req.params.id, {
             name: req.body.name,
             email: req.body.email,
-            password: req.body.password,
             occupation: req.body.occupation,
             age: req.body.age,
             github: req.body.github,
             bio: req.body.bio
 
         }, {new: true});
-        if (!user) 
-            return res.status(400).send(`The user with id "${req.params.id}" d
-    oes not exist.`);
-        await user.save();
+        
         return res.send(user);
     } catch (ex) {
         return res
