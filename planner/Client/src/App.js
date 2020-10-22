@@ -2,13 +2,12 @@ import React, {useState} from 'react'
 import './App.css';
 import {Route, Router, useHistory} from "react-router-dom";
 import {useCookies} from 'react-cookie';
-//my Pages import ProfilePage from './components/ProfilePage';
 import HomePage from './components/HomePage';
 import CreateTask from './components/CreateTask';
 import Cards from './components/Cards';
 import MyProfile from './components/MyProfile'
 import EditProfile from './components/EditProfile'
-// import ProtectedRoute from './components/ProtectedRoutes';
+import ProtectedRoute from './components/ProtectedRoutes';
 import {Button} from '@material-ui/core'
 import {Nav} from 'react-bootstrap'
 import { Header } from 'react-bootstrap/lib/Modal';

@@ -31,7 +31,7 @@ class CreateTask extends Component {
     }
     /////////////////////////////////
     handleSubmit = async(event) => {
-        event.preventDefault();
+        // event.preventDefault();
         const {
             title,
             category,

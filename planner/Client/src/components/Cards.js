@@ -151,7 +151,7 @@ export default class Cards extends Component {
                                     <Card
                                         style={{
                                         marginBottom: "5px",
-                                        padding: "10px",
+                                        padding: "20px",
                                         display: "grid",
                                         justifyContent: "center"
                                     }}>
